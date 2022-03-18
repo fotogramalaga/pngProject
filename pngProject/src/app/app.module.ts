@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { ImagenesComponent } from './imagenes/imagenes.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { ErrorComponent } from './error/error.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ErrorComponent } from './error/error.component';
     ErrorComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,9 @@
+.example-card {
+  width: 400px;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
