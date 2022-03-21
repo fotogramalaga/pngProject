@@ -6,9 +6,9 @@ import { ImagenesComponent } from './imagenes/imagenes.component';
 import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'imagenes', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'imagenes', component: ImagenesComponent },
+  { path: 'home', component: HomeComponent },
 ];
 
 @NgModule({
