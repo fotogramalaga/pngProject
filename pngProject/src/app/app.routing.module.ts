@@ -6,7 +6,7 @@ import { ImagenesComponent } from './imagenes/imagenes.component';
 import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'imagenes', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'imagenes', component: ImagenesComponent },
 ];
