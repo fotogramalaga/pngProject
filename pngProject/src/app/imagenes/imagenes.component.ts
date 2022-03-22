@@ -38,6 +38,7 @@ import { IProducto } from '../interfaces/producto.interface';
 import { ProductosService } from '../services/productos.service';
 import { ICategoria } from '../interfaces/categoria.interface';
 import { ConfirmationService } from 'primeng/api';
+import { IImagen } from './imagen.interface';
 
 @Component({
   selector: 'app-imagenes',
@@ -46,20 +47,20 @@ import { ConfirmationService } from 'primeng/api';
 })
 export class ImagenesComponent implements OnInit {
   idCategoria: string = '';
-  imagenes: any[] = [
-    {
-      titulo: '',
-      categoria: '',
-      fecha: null,
-      contadorLikes: 0,
-      contadorDislikes: 0,
-      rutaImagen: '../../assets/img/18/nederotico.png',
-    },
-  ];
+  imagenPngPoject: IImagen = {
+    titulo: '',
+    categoria: '',
+    fecha: new Date(),
+    contadorLikes: 0,
+    contadorDislikes: 0,
+    rutaImagen: '../../assets/img/18/nederotico.png',
+  };
+  imagenes: IImagen[] = [];
+
   nuevoProducto: IProducto = {
     descripcion: '',
     imagenURL: '',
-    idCategoria: ''
+    idCategoria: '',
     /* rutaImagen: '../../assets/img/18/nederotico.png', */
   };
   imagen: any;
@@ -78,22 +79,25 @@ export class ImagenesComponent implements OnInit {
     if (!this.usuario) {
       this.router.navigateByUrl('login');
     }
-    this.getCategorias();
+    this.getImagenes();
   }
 
-  getCategorias() {
-    this.productosService.getCategorias().subscribe((categorias: ICategoria[]) => {
-      this.categorias = categorias;
-      this.getProductos(this.categorias[0]);
+  getImagenes() {
+    this.productosService.getImagenes().subscribe((imagenes: IImagen[]) => {
+      this.imagenes = imagenes;
+      console.log(imagenes);
+      //this.getProductos(this.categorias[0]);
     });
   }
 
-  getProductos(categoria: ICategoria) {
+  /* getProductos(categoria: ICategoria) {
     this.idCategoria = categoria.id;
-    this.productosService.getProductos(this.idCategoria).subscribe((productos: IProducto[]) => {
-      this.productos = productos;
-    });
-  }
+    this.productosService
+      .getImagenes(this.idCategoria)
+      .subscribe((productos: IProducto[]) => {
+        this.productos = productos;
+      });
+  } */
 
   elegidaImagen(event: any) {
     this.imagen = event.target.files[0];
@@ -102,15 +106,15 @@ export class ImagenesComponent implements OnInit {
 
   async addProducto() {
     const storage = getStorage();
-    const storageRef = ref(storage, 'productos/' + this.imagen.name);
+    const storageRef = ref(storage, 'imagenes/' + this.imagen.name);
     const infoUpload = await uploadBytes(storageRef, this.imagen);
-    this.nuevoProducto.imagenURL = await getDownloadURL(infoUpload.ref);
-    this.nuevoProducto.idCategoria = this.idCategoria;
-    await this.productosService.addProducto(this.nuevoProducto);
+    this.imagenPngPoject.rutaImagen = await getDownloadURL(infoUpload.ref);
+    this.imagenPngPoject.categoria = this.idCategoria;
+    await this.productosService.addProducto(this.imagenPngPoject);
     this.confirmationService.confirm({
       message: 'Producto creado correctamente',
       header: 'OK',
-      icon: 'pi pi-check'
+      icon: 'pi pi-check',
     });
     // Resetear el producto
     this.nuevoProducto.descripcion = '';

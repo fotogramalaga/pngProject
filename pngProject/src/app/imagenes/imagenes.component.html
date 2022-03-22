@@ -87,60 +87,54 @@
       <h3>Categorías</h3>
     </div>
 
-    <div class="col-lg-4 col-md-6 col-xs-12" >
+    <div class="col-lg-4 col-md-6 col-xs-12">
       <div *ngFor="let categoria of categorias">
-        <button
-          pButton
-          pRipple
-          [label]="categoria.descripcion"
-          class="w-full mt-2"
-          (click)="getProductos(categoria)"
-        ></button>
+        <button pButton pRipple [label]="categoria.descripcion" class="w-full mt-2" (click)="getImagenes()"></button>
       </div>
     </div>
   </div>
   <div class="col-lg-8">
     <div class="text-center mb-5">
-      <h3>Imagenes</h3>
+      <h3>imagenPngPoject</h3>
     </div>
 
     <div class="row">
-      <div class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes"> <img mat-card-image [src]="imagen.rutaImagen"
-        [alt]="imagen.titulo" />
+      <div class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes"> <img mat-card-image
+          [src]="imagen.rutaImagen" [alt]="imagen.titulo" />
 
-      <div class="card-body">
-        <h5 class="card-title">Titulo</h5>
-        <p class="card-text">Categoria:</p>
-        <p class="card-text">Likes: </p>
-      </div>
+        <div class="card-body">
+          <h5 class="card-title">Titulo: {{imagen.titulo}}</h5>
+          <p class="card-text">Categoria:</p>
+          <p class="card-text">Likes: </p>
+        </div>
 
       </div>
 
 
-      <div class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes"> <img mat-card-image [src]="imagen.rutaImagen"
-        [alt]="imagen.titulo" />
-      <div class="card-body">
-        <h5 class="card-title">Titulo</h5>
-        <p class="card-text">Categoria:</p>
-        <p class="card-text">Likes: </p>
+      <!-- <div class="card col-lg-4 col-md-6 col-xs-12"> <img mat-card-image [src]="imagen.rutaImagen"
+          [alt]="imagen.titulo" />
+        <div class="card-body">
+          <h5 class="card-title">Titulo</h5>
+          <p class="card-text">Categoria:</p>
+          <p class="card-text">Likes: </p>
+        </div>
       </div>
+      <div class="card col-lg-4 col-md-6 col-xs-12"> <img mat-card-image [src]="imagen.rutaImagen"
+          [alt]="imagen.titulo" />
+        <div class="card-body">
+          <h5 class="card-title">Titulo</h5>
+          <p class="card-text">Categoria:</p>
+          <p class="card-text">Likes: </p>
+        </div>
       </div>
-      <div class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes"> <img mat-card-image [src]="imagen.rutaImagen"
-        [alt]="imagen.titulo" />
-      <div class="card-body">
-        <h5 class="card-title">Titulo</h5>
-        <p class="card-text">Categoria:</p>
-        <p class="card-text">Likes: </p>
-      </div>
-      </div>
-      <div class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes"> <img mat-card-image [src]="imagen.rutaImagen"
-        [alt]="imagen.titulo" />
-      <div class="card-body">
-        <h5 class="card-title">Titulo</h5>
-        <p class="card-text">Categoria:</p>
-        <p class="card-text">Likes: </p>
-      </div>
-      </div>
+      <div class="card col-lg-4 col-md-6 col-xs-12"> <img mat-card-image [src]="imagen.rutaImagen"
+          [alt]="imagen.titulo" />
+        <div class="card-body">
+          <h5 class="card-title">Titulo</h5>
+          <p class="card-text">Categoria:</p>
+          <p class="card-text">Likes: </p>
+        </div>
+      </div> -->
     </div>
 
 
@@ -150,48 +144,31 @@
 
 
 
-  
+
 
     <div>
       <label for="descripcion" class="block text-900 font-medium mb-2">Descripción</label>
-      <input
-        id="descripcion"
-        type="text"
-        pInputText
-        class="w-full mb-3"
-        name="descripcion"
-        [(ngModel)]="nuevoProducto.descripcion"
-      />
+      <input id="descripcion" type="text" pInputText class="w-full mb-3" name="descripcion"
+        [(ngModel)]="imagenPngPoject.titulo" />
 
       <label for="imagen" class="block text-900 font-medium mb-2">Imagen</label>
       <input id="imagen" type="file" pInputText class="w-full mb-3" name="imagen" (change)="elegidaImagen($event)" />
 
-      <button
-        pButton
-        pRipple
-        label="Agregar producto"
-        icon="pi pi-plus"
-        class="w-full"
-        (click)="addProducto()"
-      ></button>
+      <button pButton pRipple label="Agregar producto" icon="pi pi-plus" class="w-full"
+        (click)="addProducto()"></button>
     </div>
   </div>
 
 
-<p-confirmDialog
-  [style]="{ width: '50vw' }"
-  [baseZIndex]="10000"
-  acceptButtonStyleClass="p-button-primary"
-  [rejectVisible]="false"
-  acceptLabel="Aceptar"
-></p-confirmDialog>
+  <p-confirmDialog [style]="{ width: '50vw' }" [baseZIndex]="10000" acceptButtonStyleClass="p-button-primary"
+    [rejectVisible]="false" acceptLabel="Aceptar"></p-confirmDialog>
 
 
 
 
 
 
-<!--     <div *ngFor="let imagen of imagenes">
+  <!--     <div *ngFor="let imagen of imagenes">
       <p-card [header]="ima.descripcion" [style]="{ width: '360px' }" styleClass="p-card-shadow">
         <ng-template pTemplate="header">
           <img [alt]="producto.descripcion" [src]="producto.imagenURL" />
@@ -199,10 +176,10 @@
 
 
 
-        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+  <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
             quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
         <ng-template pTemplate="footer">
             <p-button label="Save" icon="pi pi-check"></p-button>
             <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
         </ng-template> -->
-      <!-- </p-card> -->
+  <!-- </p-card> -->
