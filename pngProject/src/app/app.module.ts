@@ -1,6 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+/* IMPORTACIONES NUEVAS */
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { CheckboxModule } from 'primeng/checkbox';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CardModule } from 'primeng/card';
+import { ConfirmationService } from 'primeng/api';
+/* FIN IMPORTACIONES NUEVAS */
+
+
+
+
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -27,6 +41,7 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     LoginComponent,
+    
     ImagenesComponent,
     FavoritosComponent,
     ErrorComponent,
@@ -34,20 +49,28 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
+    ButtonModule,
+    CheckboxModule,
+    InputTextareaModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatToolbarModule,
+    ConfirmDialogModule,
+    CardModule,
+    InputTextModule,
     MatButtonModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
     FormsModule,
     AppRoutingModule,
+    
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
+    provideStorage(() => getStorage()),
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
