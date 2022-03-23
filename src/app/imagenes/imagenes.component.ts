@@ -63,7 +63,13 @@ export class ImagenesComponent implements OnInit {
     idCategoria: '',
   };
   imagenParaSubir: any;
-  categorias: ICategoria[] = [];
+  categorias: ICategoria[] = [
+  {id:'', nombre: 'Arte'},
+  {id:'', nombre: 'Paisaje'},
+  {id:'', nombre: 'Animales'},
+  {id:'', nombre: 'Deportes'},
+  {id:'', nombre: 'Mas18'}
+];
   usuario!: User;
   constructor(
     private fireAuth: Auth,
@@ -124,3 +130,10 @@ export class ImagenesComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 }
+
+
+
+/* public saveCode(e): void {
+  let find = this.codeList.find(x => x?.name === e.target.value);
+  console.log(find?.id);
+} */
