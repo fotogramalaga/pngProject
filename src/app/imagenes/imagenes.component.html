@@ -44,8 +44,8 @@
     </div>
 
     <div class="col-lg-4 col-md-6 col-xs-12">
-      <div *ngFor="let categoria of categorias">
-        <button pButton pRipple [label]="categoria.nombre" class="w-full mt-2" (click)="getImagenes()"></button>
+      <div *ngFor="let categoria of imagenes">
+        <button class="w-full mt-2" [value]="categoria.titulo" (click)="getImagenes()">{{categoria.titulo}}</button>
       </div>
     </div>
   </div>

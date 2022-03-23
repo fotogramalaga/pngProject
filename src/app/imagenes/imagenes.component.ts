@@ -63,7 +63,11 @@ export class ImagenesComponent implements OnInit {
     idCategoria: '',
   };
   imagenParaSubir: any;
-  categorias: ICategoria[] = [];
+  categorias: ICategoria[] = [
+    {
+      nombre: '',
+    },
+  ];
   usuario!: User;
   constructor(
     private fireAuth: Auth,
