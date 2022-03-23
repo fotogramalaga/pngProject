@@ -64,9 +64,11 @@ export class ImagenesComponent implements OnInit {
   };
   imagenParaSubir: any;
   categorias: ICategoria[] = [
-    {
-      nombre: '',
-    },
+    { id: '', nombre: 'Arte' },
+    { id: '', nombre: 'Paisaje' },
+    { id: '', nombre: 'Animales' },
+    { id: '', nombre: 'Deportes' },
+    { id: '', nombre: 'Mas18' },
   ];
   usuario!: User;
   constructor(
@@ -128,3 +130,8 @@ export class ImagenesComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 }
+
+/* public saveCode(e): void {
+  let find = this.codeList.find(x => x?.name === e.target.value);
+  console.log(find?.id);
+} */
