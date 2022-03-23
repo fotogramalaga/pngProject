@@ -35,7 +35,7 @@ import { Router } from '@angular/router';
 import { Auth, User } from '@angular/fire/auth';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { IProducto } from '../interfaces/producto.interface';
-import { ProductosService } from '../services/productos.service';
+import { ImagenesService } from '../services/productos.service';
 import { ICategoria } from '../interfaces/categoria.interface';
 import { ConfirmationService } from 'primeng/api';
 import { IImagen } from './imagen.interface';
@@ -61,16 +61,14 @@ export class ImagenesComponent implements OnInit {
     descripcion: '',
     imagenURL: '',
     idCategoria: '',
-    /* rutaImagen: '../../assets/img/18/nederotico.png', */
   };
-  imagen: any;
+  imagenParaSubir: any;
   categorias: ICategoria[] = [];
-  productos: IProducto[] = [];
   usuario!: User;
   constructor(
     private fireAuth: Auth,
     private router: Router,
-    private productosService: ProductosService,
+    private ImagenesService: ImagenesService,
     private confirmationService: ConfirmationService
   ) {}
 
@@ -83,7 +81,7 @@ export class ImagenesComponent implements OnInit {
   }
 
   getImagenes() {
-    this.productosService.getImagenes().subscribe((imagenes: IImagen[]) => {
+    this.ImagenesService.getImagenes().subscribe((imagenes: IImagen[]) => {
       this.imagenes = imagenes;
       console.log(imagenes);
       //this.getProductos(this.categorias[0]);
@@ -92,7 +90,7 @@ export class ImagenesComponent implements OnInit {
 
   /* getProductos(categoria: ICategoria) {
     this.idCategoria = categoria.id;
-    this.productosService
+    this.ImagenesService
       .getImagenes(this.idCategoria)
       .subscribe((productos: IProducto[]) => {
         this.productos = productos;
@@ -100,17 +98,17 @@ export class ImagenesComponent implements OnInit {
   } */
 
   elegidaImagen(event: any) {
-    this.imagen = event.target.files[0];
-    console.log(this.imagen);
+    this.imagenParaSubir = event.target.files[0];
+    console.log(this.imagenParaSubir);
   }
 
-  async addProducto() {
+  async addImagen() {
     const storage = getStorage();
-    const storageRef = ref(storage, 'imagenes/' + this.imagen.name);
-    const infoUpload = await uploadBytes(storageRef, this.imagen);
+    const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
+    const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
     this.imagenPngPoject.rutaImagen = await getDownloadURL(infoUpload.ref);
     this.imagenPngPoject.categoria = this.idCategoria;
-    await this.productosService.addProducto(this.imagenPngPoject);
+    await this.ImagenesService.addImagen(this.imagenPngPoject);
     this.confirmationService.confirm({
       message: 'Producto creado correctamente',
       header: 'OK',

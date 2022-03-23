@@ -11,17 +11,16 @@ import { where } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { IImagen } from '../imagenes/imagen.interface';
 import { ICategoria } from '../interfaces/categoria.interface';
-import { IProducto } from '../interfaces/producto.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductosService {
+export class ImagenesService {
   constructor(private firestore: Firestore) {}
 
   getCategorias(): Observable<ICategoria[]> {
     const categorias = collection(this.firestore, 'categorias');
-    const ordenados = query(categorias, orderBy('descripcion', 'desc'));
+    const ordenados = query(categorias, orderBy('categorias', 'desc'));
     return collectionData(ordenados, { idField: 'id' }) as Observable<
       ICategoria[]
     >;
@@ -38,7 +37,7 @@ export class ProductosService {
     }) as Observable<IImagen[]>;
   }
 
-  addProducto(producto: IImagen) {
+  addImagen(producto: IImagen) {
     const productos = collection(this.firestore, 'imagenes');
     return addDoc(productos, producto);
   }
