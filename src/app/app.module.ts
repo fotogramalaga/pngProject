@@ -36,6 +36,7 @@ import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app.routing.module';
 import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { HomeComponent } from './home/home.component';
     FavoritosComponent,
     ErrorComponent,
     HomeComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
