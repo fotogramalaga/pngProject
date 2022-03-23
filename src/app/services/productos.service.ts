@@ -28,11 +28,11 @@ export class ImagenesService {
 
   getImagenes(idCategoria?: string): Observable<IImagen[]> {
     const imagenes = collection(this.firestore, 'imagenes');
-    /* const productosDeCategoria = query(
-      productos,
-      where('idCategoria', '==', idCategoria)
-    ); */
-    return collectionData(imagenes, {
+    const imagenesDeCategoria = query(
+      imagenes,
+      where('categoria', '==', idCategoria)
+    );
+    return collectionData(imagenesDeCategoria, {
       idField: 'id',
     }) as Observable<IImagen[]>;
   }

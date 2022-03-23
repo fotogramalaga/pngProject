@@ -12,9 +12,6 @@ import { CardModule } from 'primeng/card';
 import { ConfirmationService } from 'primeng/api';
 /* FIN IMPORTACIONES NUEVAS */
 
-
-
-
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -37,12 +34,13 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app.routing.module';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    
+
     ImagenesComponent,
     FavoritosComponent,
     ErrorComponent,
@@ -50,6 +48,7 @@ import { FooterComponent } from './footer/footer.component';
     FooterComponent,
   ],
   imports: [
+    FontAwesomeModule,
     BrowserModule,
     ButtonModule,
     CheckboxModule,
@@ -66,7 +65,7 @@ import { FooterComponent } from './footer/footer.component';
     MatListModule,
     FormsModule,
     AppRoutingModule,
-    
+
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
