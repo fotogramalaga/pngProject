@@ -1,0 +1,15 @@
+a{
+  color: black;
+  text-decoration: none;
+  }
+  a:hover{
+  opacity: 0.9;
+  color: darkblue;
+  }
+  li{
+  list-style: none;
+  }
+  li:hover{
+  color: darkblue;
+  opacity: 0.9;
+  }
