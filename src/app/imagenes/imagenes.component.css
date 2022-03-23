@@ -1,7 +1,7 @@
 #logoHome {
-    width: 4em;
-  }
-  
+  width: 4em;
+}
+
 /* BOTONES */
 
 button:hover {
@@ -10,17 +10,21 @@ button:hover {
   transition: background 0.8s;
   background: #00BB31 radial-gradient(circle, transparent 1%, #00BB31 1%) center/15000%;
 }
- 
 
-button:active {
+
+.selected {
   color: white;
-  border: 1px solid #00BB31; 
+  border: 1px solid #00BB31;
   box-shadow: none;
   background-color: #8EDD65;
   background-size: 100%;
   transition: background 0s;
 }
 
+.corazon {
+  filter: drop-shadow (10px 10px 10px Crimson);
+  box-shadow: 0 0 20px 15px Crimson;
+}
 
 button:focus {
   color: white;
@@ -32,7 +36,7 @@ button:focus {
 
 button:disabled {
   color: #BBBBBB;
-  cursor: not-allowed; 
+  cursor: not-allowed;
 }
 
 button {

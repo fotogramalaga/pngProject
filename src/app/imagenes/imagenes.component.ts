@@ -39,6 +39,7 @@ import { ImagenesService } from '../services/productos.service';
 import { ICategoria } from '../interfaces/categoria.interface';
 import { ConfirmationService } from 'primeng/api';
 import { IImagen } from './imagen.interface';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-imagenes',
@@ -46,17 +47,18 @@ import { IImagen } from './imagen.interface';
   styleUrls: ['./imagenes.component.css'],
 })
 export class ImagenesComponent implements OnInit {
+  faCoffee = faCoffee;
   idCategoria: string = '';
-  imagenPngPoject: IImagen = {
+  imagen: IImagen = {
     titulo: '',
     categoria: '',
+    descripcion: '',
     fecha: new Date(),
     contadorLikes: 0,
-    contadorDislikes: 0,
     rutaImagen: '../../assets/img/18/nederotico.png',
   };
   imagenes: IImagen[] = [];
-
+  nombreCategoria: string = '';
   nuevoProducto: IProducto = {
     descripcion: '',
     imagenURL: '',
@@ -64,11 +66,11 @@ export class ImagenesComponent implements OnInit {
   };
   imagenParaSubir: any;
   categorias: ICategoria[] = [
-    { id: '', nombre: 'Arte' },
-    { id: '', nombre: 'Paisaje' },
-    { id: '', nombre: 'Animales' },
-    { id: '', nombre: 'Deportes' },
-    { id: '', nombre: 'Mas18' },
+    { id: '1', nombre: 'Arte', selected: true },
+    { id: '2', nombre: 'Paisaje', selected: false },
+    { id: '3', nombre: 'Animales', selected: false },
+    { id: '4', nombre: 'Deportes', selected: false },
+    { id: '5', nombre: 'Mas18', selected: false },
   ];
   usuario!: User;
   constructor(
@@ -83,15 +85,22 @@ export class ImagenesComponent implements OnInit {
     if (!this.usuario) {
       this.router.navigateByUrl('login');
     }
-    this.getImagenes();
+    this.getImagenes(this.categorias[0]);
   }
 
-  getImagenes() {
-    this.ImagenesService.getImagenes().subscribe((imagenes: IImagen[]) => {
-      this.imagenes = imagenes;
-      console.log(imagenes);
-      //this.getProductos(this.categorias[0]);
-    });
+  getImagenes(categoria?: ICategoria) {
+    this.nombreCategoria = categoria?.nombre || '';
+    this.ImagenesService.getImagenes(categoria?.id).subscribe(
+      (imagenes: IImagen[]) => {
+        this.imagenes = imagenes;
+        //this.getProductos(this.categorias[0]);
+      }
+    );
+  }
+
+  eligeCategoria(categoria: ICategoria) {
+    this.categorias.forEach((x) => (x.selected = false));
+    categoria.selected = true;
   }
 
   /* getProductos(categoria: ICategoria) {
@@ -109,14 +118,18 @@ export class ImagenesComponent implements OnInit {
   }
 
   async addImagen() {
+    let estaCategoria: string = '';
+    this.categorias.forEach(function (x) {
+      if (x.selected == true) estaCategoria = x.id;
+    });
     const storage = getStorage();
     const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
     const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
-    this.imagenPngPoject.rutaImagen = await getDownloadURL(infoUpload.ref);
-    this.imagenPngPoject.categoria = this.idCategoria;
-    await this.ImagenesService.addImagen(this.imagenPngPoject);
+    this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
+    this.imagen.categoria = estaCategoria;
+    await this.ImagenesService.addImagen(this.imagen);
     this.confirmationService.confirm({
-      message: 'Producto creado correctamente',
+      message: 'Imagen añadida correctamente',
       header: 'OK',
       icon: 'pi pi-check',
     });
@@ -128,6 +141,10 @@ export class ImagenesComponent implements OnInit {
   logout() {
     this.fireAuth.signOut();
     this.router.navigateByUrl('/login');
+  }
+
+  myFunction2(x: any) {
+    x.classList.toggle('fa-thumbs-down');
   }
 }
 

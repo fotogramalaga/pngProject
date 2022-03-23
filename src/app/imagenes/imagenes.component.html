@@ -46,42 +46,50 @@
     <div class="col-lg-4 col-md-6 col-xs-12">
       <div *ngFor="let categoria of categorias">
         <button st pButton pRipple [label]="categoria.nombre" class="large secundario w-full mt-2"
-          (click)="getImagenes()"></button>
+          (click)="getImagenes(categoria)"></button>
       </div>
     </div>
   </div>
   <div class="col-lg-8">
     <div class="text-center mb-5">
-      <h3>imagenPngPoject</h3>
+      <h3>imagen</h3>
     </div>
 
     <div class="row">
-      <div class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes"> <img mat-card-image
-          [src]="imagen.rutaImagen" [alt]="imagen.titulo" />
+      <div class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes">
+
+        <img mat-card-image [src]="imagen.rutaImagen" [alt]="imagen.titulo">
+        <mat-icon class="corazon" classList="fa-thumbs-down" (click)="myFunction2(this)">favorite_border</mat-icon>
+        <!-- <i onclick="" class="fa-solid fa-square-heart"></i>
+        <fa-icon [icon]="faCoffee" (click)="myFunction2(this)"></fa-icon> -->
 
         <div class="card-body">
           <h5 class="card-title">Titulo: {{imagen.titulo}}</h5>
-          <p class="card-text">Categoria:</p>
-          <p class="card-text">Likes: </p>
+          <p class="card-text">Categoria:{{nombreCategoria}}</p>
+          <p class="card-text">Likes: {{imagen.contadorLikes}}</p>
+          <p class="card-text">Descripción: {{imagen.descripcion}}</p>
         </div>
       </div>
     </div>
     <div>
       <label for="title" class="block text-900 font-medium mb-2">Título</label>
-      <input class="formTitle" id="title" placeholder="Escribe un título"/>
+      <input class="formTitle" id="titulo" [(ngModel)]="imagen.titulo" placeholder="Titula tu imagen" />
       <label for="descripcion" class="block text-900 font-medium mb-2">Descripción</label>
       <textarea id="descripcion" type="text" pInputText class="w-full mb-3" name="descripcion" maxlength="50"
-        [(ngModel)]="imagenPngPoject.titulo"></textarea>
-
-
-
-      
+        [(ngModel)]="imagen.descripcion"></textarea>
+      <br>
+      <label for="inputCategorias">Categorías</label>
+      <div id="inputCategorias">
+        <button st pButton pRipple *ngFor="let categoria of categorias" [label]="categoria.nombre"
+          class="large secundario w-full mt-2" [class.selected]="categoria.selected"
+          (click)="eligeCategoria(categoria)"></button>
+      </div>
 
       <label for="imagenParaSubir" class="block text-900 font-medium mb-2">Imagen</label>
       <input id="imagenParaSubir" type="file" pInputText class="w-full mb-3" name="imagenParaSubir"
         (change)="elegidaImagen($event)" />
 
-      <button label="Agregar producto" icon="pi pi-plus" class="w-full" (click)="addImagen()"></button>
+      <button label="Agregar producto" icon="pi pi-plus" class="w-full" (click)="addImagen()">Agregar Imagen</button>
     </div>
   </div>
 </div>
@@ -91,6 +99,7 @@
 
 
 <app-footer></app-footer>
+
 
 
 
