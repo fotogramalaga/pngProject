@@ -75,6 +75,7 @@ export class ImagenesComponent implements OnInit {
     { id: '5', nombre: 'Mas18', selected: false },
   ];
   usuario!: User;
+  categoriaSeleccionada = '0';
   constructor(
     private fireAuth: Auth,
     private router: Router,
@@ -124,6 +125,7 @@ export class ImagenesComponent implements OnInit {
   eligeCategoria(categoria: ICategoria) {
     this.categorias.forEach((x) => (x.selected = false));
     categoria.selected = true;
+    this.categoriaSeleccionada = categoria.id;
   }
 
   /* getProductos(categoria: ICategoria) {
@@ -145,20 +147,26 @@ export class ImagenesComponent implements OnInit {
     this.categorias.forEach(function (x) {
       if (x.selected == true) estaCategoria = x.id;
     });
-    const storage = getStorage();
-    const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
-    const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
-    this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
-    this.imagen.categoria = estaCategoria;
-    await this.ImagenesService.addImagen(this.imagen);
-    this.confirmationService.confirm({
-      message: 'Imagen añadida correctamente',
-      header: 'OK',
-      icon: 'pi pi-check',
-    });
-    // Resetear el producto
-    this.nuevoProducto.descripcion = '';
-    this.nuevoProducto.imagenURL = '';
+    console.log(estaCategoria);
+    if(this.categoriaSeleccionada == '0'){
+      alert("Tienes que elegir una categoría.")
+    }else{
+      const storage = getStorage();
+      const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
+      const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
+      this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
+      this.imagen.categoria = estaCategoria;
+      await this.ImagenesService.addImagen(this.imagen);
+      this.confirmationService.confirm({
+        message: 'Imagen añadida correctamente',
+        header: 'OK',
+        icon: 'pi pi-check',
+      });
+      // Resetear el producto
+      this.nuevoProducto.descripcion = '';
+      this.nuevoProducto.imagenURL = '';
+      this.categoriaSeleccionada = '0';
+    }
   }
 
   logout() {
