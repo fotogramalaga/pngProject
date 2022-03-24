@@ -48,8 +48,10 @@ button {
   text-align: center;
   font-family: termina, sans-serif;
   font-style: normal;
-  font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 16px;
+  min-width: 150px;
+  max-width: 150px
 }
 
 
@@ -73,4 +75,12 @@ button {
 .secundario {
   background-color: #EEEEEE;
   color: #003DA5;
+}
+
+.error {
+  border: 1px solid red !important;
+}
+
+.error-mensaje {
+  font-size: x-small;
 }
