@@ -57,41 +57,67 @@
       </div>
 
       <div class="row">
-        <div class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes">
+        <mat-card class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes">
+          <mat-card-header>
+            <mat-card-title>{{imagen.titulo}}</mat-card-title>
+            <mat-card-subtitle>{{nombreCategoria}}</mat-card-subtitle>
+          </mat-card-header><img mat-card-image class="img-fluid mx-0" [src]="imagen.rutaImagen"
+            [alt]="imagen.descripcion">
+          <mat-card-content>
+            <p>{{imagen.descripcion}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>
+              <mat-icon class="corazon" classList="fa-thumbs-down" (click)="myFunction2(this)">favorite_border
+              </mat-icon>
+            </button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+        <!-- <br>
+        <mat-card>
+          <mat-card-title>Actions Buttons</mat-card-title>
+          <mat-card-subtitle>End</mat-card-subtitle>
+          <mat-card-actions align="end">
+            <button mat-button>Like</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card> -->
+        <!-- <div class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes">
 
           <img mat-card-image [src]="imagen.rutaImagen" [alt]="imagen.titulo">
-          <mat-icon class="corazon" classList="fa-thumbs-down" (click)="myFunction2(this)">favorite_border</mat-icon>
-          <!-- <i onclick="" class="fa-solid fa-square-heart"></i>
+          <mat-icon class="corazon" classList="fa-thumbs-down" (click)="myFunction2(this)">favorite_border</mat-icon> -->
+        <!-- <i onclick="" class="fa-solid fa-square-heart"></i>
         <fa-icon [icon]="faCoffee" (click)="myFunction2(this)"></fa-icon> -->
 
-          <div class="card-body">
+        <!-- <div class="card-body">
             <h5 class="card-title">Titulo: {{imagen.titulo}}</h5>
             <p class="card-text">Categoria:{{nombreCategoria}}</p>
             <p class="card-text">Likes: {{imagen.contadorLikes}}</p>
             <p class="card-text">Descripción: {{imagen.descripcion}}</p>
-          </div>
-        </div>
+          </div> -->
       </div>
-      <div>
-        <label for="title" class="block text-900 font-medium mb-2">Título</label>
-        <input class="formTitle" id="titulo" [(ngModel)]="imagen.titulo" placeholder="Titula tu imagen" />
-        <label for="descripcion" class="block text-900 font-medium mb-2">Descripción</label>
-        <textarea id="descripcion" type="text" pInputText class="w-full mb-3" name="descripcion" maxlength="50"
-          [(ngModel)]="imagen.descripcion"></textarea>
-        <br>
-        <label for="inputCategorias">Categorías</label>
-        <div id="inputCategorias">
-          <button st pButton pRipple *ngFor="let categoria of categorias" [label]="categoria.nombre"
-            class="large secundario w-full mt-2" [class.selected]="categoria.selected"
-            (click)="eligeCategoria(categoria)"></button>
-        </div>
-
-        <label for="imagenParaSubir" class="block text-900 font-medium mb-2">Imagen</label>
-        <input id="imagenParaSubir" type="file" pInputText class="w-full mb-3" name="imagenParaSubir"
-          (change)="elegidaImagen($event)" />
-
-        <button label="Agregar producto" icon="pi pi-plus" class="w-full" (click)="addImagen()">Agregar Imagen</button>
+    </div>
+    <div>
+      <label for="title" class="block text-900 font-medium mb-2">Título</label>
+      <input class="formTitle" id="titulo" [(ngModel)]="imagen.titulo" placeholder="Titula tu imagen" />
+      <label for="descripcion" class="block text-900 font-medium mb-2">Descripción</label>
+      <textarea id="descripcion" type="text" pInputText class="w-full mb-3" name="descripcion" maxlength="50"
+        [(ngModel)]="imagen.descripcion"></textarea>
+      <br>
+      <label for="inputCategorias">Categorías</label>
+      <div id="inputCategorias">
+        <button st pButton pRipple *ngFor="let categoria of categorias" [label]="categoria.nombre"
+          class="large secundario w-full mt-2" [class.selected]="categoria.selected"
+          (click)="eligeCategoria(categoria)"></button>
       </div>
+
+      <label for="imagenParaSubir" class="block text-900 font-medium mb-2">Imagen</label>
+      <input id="imagenParaSubir" type="file" pInputText class="w-full mb-3" name="imagenParaSubir"
+        (change)="elegidaImagen($event)" />
+
+      <button label="Agregar producto" icon="pi pi-plus" class="w-full" (click)="addImagen()">Agregar Imagen</button>
     </div>
   </div>
 </div>
