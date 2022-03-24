@@ -37,6 +37,14 @@ export class ImagenesService {
     }) as Observable<IImagen[]>;
   }
 
+  getFavoritos(): Observable<IImagen[]> {
+    const imagenes = collection(this.firestore, 'imagenes');
+    const imagenesFavoritas = query(imagenes, where('favorito', '==', true));
+    return collectionData(imagenesFavoritas, {
+      idField: 'id',
+    }) as Observable<IImagen[]>;
+  }
+
   addImagen(producto: IImagen) {
     const productos = collection(this.firestore, 'imagenes');
     return addDoc(productos, producto);

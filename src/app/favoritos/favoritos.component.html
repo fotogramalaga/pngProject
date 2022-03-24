@@ -1,39 +1,4 @@
-<header id="site-header" class="sticky-top bg-warning">
-  <div class="container">
-    <nav class="navbar navbar-expand-lg stroke ">
-      <a class="navbar-brand" href="#index.html">
-        <span><img id="logoHome" src="../../assets/img/login.jpg" /></span> <span class="example-spacer"></span>
-      </a>
-      <span class="example-spacer"></span>
-      <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
-        <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-      </button>
-      <span class="example-spacer"></span>
-      <div class="collapse navbar-collapse justify-content-around" id="navbarTogglerDemo02">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="imagenes">Inicio <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">Favoritos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#pie">Contacto</a>
-          </li>
-          <li>
-            <button mat-mini-fab title="Cerrar sesión" class="cerrar-sesion" (click)="logout()">
-              <mat-icon>directions_run</mat-icon>
-              <span class="example-spacer"></span>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-</header>
+<app-header></app-header>
 
 <!-- CODIGO NUEVO JuAN LUIS-->
 
@@ -56,32 +21,34 @@
       </div>
 
       <div class="row">
-        <mat-card class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes">
-          <mat-card-header>
-            <mat-card-title>{{imagen.titulo}}</mat-card-title>
-            <mat-card-subtitle>{{nombreCategoria}}</mat-card-subtitle>
-          </mat-card-header><img mat-card-image class="img-fluid mx-0" [src]="imagen.rutaImagen"
-            [alt]="imagen.descripcion">
-          <mat-card-content>
-            <p>{{imagen.descripcion}}
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>
-              <mat-icon [class.corazon]="imagen.favorito" (click)="setFavorito(imagen)">
-                favorite_border
-              </mat-icon>
-            </button>
-            <button mat-button (click)="like(imagen)">
-              <mat-icon class="fa fa-thumbs-up">
-              </mat-icon>{{imagen.contadorLikes}}
-            </button>
-            <button mat-button (click)="eliminarImagenFirebase(imagen)">
-              <mat-icon class="fa fa-trash">
-              </mat-icon>
-            </button>
-          </mat-card-actions>
-        </mat-card>
+        <div *ngFor="let imagen of imagenes">
+          <mat-card class="card col-lg-4 col-md-6 col-xs-12" *ngIf="imagen.favorito">
+            <mat-card-header>
+              <mat-card-title>{{imagen.titulo}}</mat-card-title>
+              <mat-card-subtitle>{{nombreCategoria}}</mat-card-subtitle>
+            </mat-card-header><img mat-card-image class="img-fluid mx-0" [src]="imagen.rutaImagen"
+              [alt]="imagen.descripcion">
+            <mat-card-content>
+              <p>{{imagen.descripcion}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>
+                <mat-icon [class.corazon]="imagen.favorito" (click)="setFavorito(imagen)">
+                  favorite_border
+                </mat-icon>
+              </button>
+              <button mat-button (click)="like(imagen)">
+                <mat-icon class="fa fa-thumbs-up">
+                </mat-icon>{{imagen.contadorLikes}}
+              </button>
+              <button mat-button (click)="eliminarImagenFirebase(imagen)">
+                <mat-icon class="fa fa-trash">
+                </mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
       </div>
     </div>
     <form #f="ngForm">
@@ -90,7 +57,7 @@
         <input type="text" class="form-control" name="titulo" [(ngModel)]="imagen.titulo" required
           [class.error]="f.controls['titulo']?.invalid && f.controls['titulo']?.touched" minlength="5" />
         <p class="error-mensaje text-danger mt-1 ml-4"
-          *ngIf="f.controls['titulo']?.invalid && f.controls['titulo']?.touched"  >
+          *ngIf="f.controls['titulo']?.invalid && f.controls['titulo']?.touched">
           Título obligatorio
         </p>
       </div>
@@ -141,4 +108,3 @@
             <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
         </ng-template> -->
 <!-- </p-card> -->
-

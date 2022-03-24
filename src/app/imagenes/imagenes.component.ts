@@ -86,7 +86,7 @@ export class ImagenesComponent implements OnInit {
   ngOnInit(): void {
     this.usuario = this.fireAuth.currentUser!;
     if (!this.usuario) {
-      this.router.navigateByUrl('login');
+      this.router.navigateByUrl('imagenes');
     }
     this.getImagenes(this.categorias[0]);
   }
@@ -148,9 +148,9 @@ export class ImagenesComponent implements OnInit {
       if (x.selected == true) estaCategoria = x.id;
     });
     console.log(estaCategoria);
-    if(this.categoriaSeleccionada == '0'){
-      alert("Tienes que elegir una categoría.")
-    }else{
+    if (this.categoriaSeleccionada == '0') {
+      alert('Tienes que elegir una categoría.');
+    } else {
       const storage = getStorage();
       const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
       const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);

@@ -1,39 +1,4 @@
-<header id="site-header" class="sticky-top bg-warning">
-  <div class="container">
-    <nav class="navbar navbar-expand-lg stroke ">
-      <a class="navbar-brand" href="#index.html">
-        <span><img id="logoHome" src="../../assets/img/login.jpg" /></span> <span class="example-spacer"></span>
-      </a>
-      <span class="example-spacer"></span>
-      <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
-        <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-      </button>
-      <span class="example-spacer"></span>
-      <div class="collapse navbar-collapse justify-content-around" id="navbarTogglerDemo02">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="imagenes">Inicio <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="favoritos">Favoritos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#pie">Contacto</a>
-          </li>
-          <li>
-            <button mat-mini-fab title="Cerrar sesión" class="cerrar-sesion" (click)="logout()">
-              <mat-icon>directions_run</mat-icon>
-              <span class="example-spacer"></span>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-</header>
+<app-header></app-header>
 
 <!-- CODIFO NUEVO JuAN LUIS-->
 
@@ -85,7 +50,7 @@
       </div>
     </div>
     <form #f="ngForm">
-     <!-- <div class="form-group">
+      <!-- <div class="form-group">
           <label>Título</label>
         <input type="text" class="form-control" name="titulo" [(ngModel)]="imagen.titulo" required
           [class.error]="f.controls['titulo']?.invalid && f.controls['titulo']?.touched" minlength="5" />
@@ -95,56 +60,56 @@
         </p>
       </div> -->
 
-        <div class="form-floating">
-          <label for="floatingTextarea2">Título</label>
-          <input type="text" class="form-control" name="titulo" [(ngModel)]="imagen.titulo" required
-            [class.error]="f.controls['titulo']?.invalid && f.controls['titulo']?.touched" minlength="5"
-            placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" />
-          <p class="error-mensaje text-danger mt-1 ml-4"
-            *ngIf="f.controls['titulo']?.invalid && f.controls['titulo']?.touched">
-            Título obligatorio
-          </p>
-        </div>
+      <div class="form-floating">
+        <label for="floatingTextarea2">Título</label>
+        <input type="text" class="form-control" name="titulo" [(ngModel)]="imagen.titulo" required
+          [class.error]="f.controls['titulo']?.invalid && f.controls['titulo']?.touched" minlength="5"
+          placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" />
+        <p class="error-mensaje text-danger mt-1 ml-4"
+          *ngIf="f.controls['titulo']?.invalid && f.controls['titulo']?.touched">
+          Título obligatorio
+        </p>
+      </div>
 
 
 
 
 
-        <!-- <form>
+      <!-- <form>
       <label for="title" class="block text-900 font-medium mb-2">Título</label>
       <input class="formTitle" id="titulo" [(ngModel)]="imagen.titulo" placeholder="Titula tu imagen" required
          /> -->
-        <!-- <label for="descripcion" class="block text-900 font-medium mb-2">Descripción</label>
+      <!-- <label for="descripcion" class="block text-900 font-medium mb-2">Descripción</label>
       <textarea id="descripcion" type="text" pInputText class="w-full mb-3" name="descripcion" maxlength="50" required
         [(ngModel)]="imagen.descripcion"></textarea>
       <br> -->
 
 
-        <label for="inputCategorias">Categorías</label>
-        <div id="inputCategorias">
-          <button *ngFor="let categoria of categorias" class="large secundario w-full mt-2"
-            [class.selected]="categoria.selected" (click)="eligeCategoria(categoria)">{{categoria.nombre}}</button>
-        </div>
-
-        <label for="imagenParaSubir" class="block text-900 font-medium mb-2">Imagen</label>
-        <input id="imagenParaSubir" type="file" pInputText class="w-full mb-3" name="imagenParaSubir"
-          (change)="elegidaImagen($event)" />
-
-        <button label="Agregar imagen" icon="pi pi-plus" class="w-full" (click)="addImagen()">Agregar Imagen</button>
-        </form>
+      <label for="inputCategorias">Categorías</label>
+      <div id="inputCategorias">
+        <button *ngFor="let categoria of categorias" class="large secundario w-full mt-2"
+          [class.selected]="categoria.selected" (click)="eligeCategoria(categoria)">{{categoria.nombre}}</button>
       </div>
+
+      <label for="imagenParaSubir" class="block text-900 font-medium mb-2">Imagen</label>
+      <input id="imagenParaSubir" type="file" pInputText class="w-full mb-3" name="imagenParaSubir"
+        (change)="elegidaImagen($event)" />
+
+      <button label="Agregar imagen" icon="pi pi-plus" class="w-full" (click)="addImagen()">Agregar Imagen</button>
+    </form>
   </div>
+</div>
 
-  <p-confirmDialog [style]="{ width: '50vw' }" [baseZIndex]="10000" acceptButtonStyleClass="p-button-primary"
-    [rejectVisible]="false" acceptLabel="Aceptar"></p-confirmDialog>
-
-
-  <app-footer></app-footer>
+<p-confirmDialog [style]="{ width: '50vw' }" [baseZIndex]="10000" acceptButtonStyleClass="p-button-primary"
+  [rejectVisible]="false" acceptLabel="Aceptar"></p-confirmDialog>
 
 
+<app-footer></app-footer>
 
 
-  <!--     <div *ngFor="let imagen of imagenes">
+
+
+<!--     <div *ngFor="let imagen of imagenes">
       <p-card [header]="ima.descripcion" [style]="{ width: '360px' }" styleClass="p-card-shadow">
         <ng-template pTemplate="header">
           <img [alt]="producto.descripcion" [src]="producto.imagenURL" />
@@ -152,10 +117,10 @@
 
 
 
-  <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
             quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
         <ng-template pTemplate="footer">
             <p-button label="Save" icon="pi pi-check"></p-button>
             <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
         </ng-template> -->
-  <!-- </p-card> -->
+<!-- </p-card> -->

@@ -22,7 +22,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ImagenesComponent } from './imagenes/imagenes.component';
@@ -35,17 +34,18 @@ import { AppRoutingModule } from './app.routing.module';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-
     ImagenesComponent,
     FavoritosComponent,
     ErrorComponent,
     HomeComponent,
     FooterComponent,
+    HeaderComponent,
   ],
   imports: [
     FontAwesomeModule,

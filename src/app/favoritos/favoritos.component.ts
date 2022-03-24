@@ -14,7 +14,7 @@ import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-favoritos',
   templateUrl: './favoritos.component.html',
-  styleUrls: ['./favoritos.component.css']
+  styleUrls: ['./favoritos.component.css'],
 })
 export class FavoritosComponent implements OnInit {
   faCoffee = faCoffee;
@@ -56,9 +56,10 @@ export class FavoritosComponent implements OnInit {
   ngOnInit(): void {
     this.usuario = this.fireAuth.currentUser!;
     if (!this.usuario) {
-      this.router.navigateByUrl('login');
+      this.router.navigateByUrl('favoritos');
     }
-    this.getImagenes(this.categorias[0]);
+    //this.getImagenes(this.categorias[0]);
+    this.getTodasImagenes();
   }
 
   getImagenes(categoria?: ICategoria) {
@@ -69,6 +70,12 @@ export class FavoritosComponent implements OnInit {
         //this.getProductos(this.categorias[0]);
       }
     );
+  }
+
+  getTodasImagenes() {
+    this.ImagenesService.getFavoritos().subscribe((imagenes: IImagen[]) => {
+      this.imagenes = imagenes;
+    });
   }
 
   like(imagen: IImagen) {
@@ -118,9 +125,9 @@ export class FavoritosComponent implements OnInit {
       if (x.selected == true) estaCategoria = x.id;
     });
     console.log(estaCategoria);
-    if(this.categoriaSeleccionada == '0'){
-      alert("Tienes que elegir una categoría.")
-    }else{
+    if (this.categoriaSeleccionada == '0') {
+      alert('Tienes que elegir una categoría.');
+    } else {
       const storage = getStorage();
       const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
       const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
@@ -153,4 +160,3 @@ export class FavoritosComponent implements OnInit {
   let find = this.codeList.find(x => x?.name === e.target.value);
   console.log(find?.id);
 } */
-
