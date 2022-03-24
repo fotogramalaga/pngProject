@@ -9,7 +9,7 @@ import {
 } from '@angular/fire/firestore';
 import { deleteDoc, doc, setDoc, where } from 'firebase/firestore';
 import { Observable } from 'rxjs';
-import { IImagen } from '../imagenes/imagen.interface';
+import { IImagen } from '../interfaces/imagen.interface';
 import { ICategoria } from '../interfaces/categoria.interface';
 
 @Injectable({

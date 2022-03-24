@@ -24,7 +24,7 @@ export class ImagenesComponent implements OnInit {
 
   logout() {
     this.router.navigateByUrl('home');
-  }
+  };
 }
  */
 
@@ -38,7 +38,7 @@ import { IProducto } from '../interfaces/producto.interface';
 import { ImagenesService } from '../services/productos.service';
 import { ICategoria } from '../interfaces/categoria.interface';
 import { ConfirmationService } from 'primeng/api';
-import { IImagen } from './imagen.interface';
+import { IImagen } from '../interfaces/imagen.interface';
 import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
