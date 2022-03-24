@@ -69,10 +69,14 @@
           </mat-card-content>
           <mat-card-actions>
             <button mat-button>
-              <mat-icon class="corazon" classList="fa-thumbs-down" (click)="myFunction2(this)">favorite_border
+              <mat-icon [class.corazon]="imagen.favorito" (click)="setFavorito(imagen)">
+                favorite_border
               </mat-icon>
             </button>
-            <button mat-button>SHARE</button>
+            <button mat-button (click)="like(imagen)">
+              <mat-icon class="fa fa-link">
+              </mat-icon>{{imagen.contadorLikes}}
+            </button>
           </mat-card-actions>
         </mat-card>
         <!-- <br>

@@ -39,7 +39,7 @@ import { ImagenesService } from '../services/productos.service';
 import { ICategoria } from '../interfaces/categoria.interface';
 import { ConfirmationService } from 'primeng/api';
 import { IImagen } from './imagen.interface';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-imagenes',
@@ -56,6 +56,8 @@ export class ImagenesComponent implements OnInit {
     fecha: new Date(),
     contadorLikes: 0,
     rutaImagen: '../../assets/img/18/nederotico.png',
+    like: false,
+    favorito: false,
   };
   imagenes: IImagen[] = [];
   nombreCategoria: string = '';
@@ -96,6 +98,20 @@ export class ImagenesComponent implements OnInit {
         //this.getProductos(this.categorias[0]);
       }
     );
+  }
+
+  like(imagen: IImagen) {
+    if (imagen.like == false) {
+      imagen.contadorLikes++;
+      imagen.like = true;
+      this.modificarImagenFirebase(imagen);
+    }
+  }
+
+  async modificarImagenFirebase(imagen: IImagen) {
+    await this.ImagenesService.updateImagen(imagen);
+    /* this.mensajeSwal.text = this.cliente.nombre + ' ha sido modificado';
+    this.mensajeSwal.fire(); */
   }
 
   eligeCategoria(categoria: ICategoria) {
@@ -143,8 +159,8 @@ export class ImagenesComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-  myFunction2(x: any) {
-    x.classList.toggle('fa-thumbs-down');
+  setFavorito(imagen: IImagen) {
+    imagen.favorito = !imagen.favorito;
   }
 }
 

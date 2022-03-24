@@ -1,5 +1,3 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 export interface IImagen {
   id?: string;
   titulo: string;
@@ -8,4 +6,6 @@ export interface IImagen {
   descripcion: string;
   contadorLikes: number;
   rutaImagen: string;
+  like: boolean;
+  favorito: boolean;
 }
