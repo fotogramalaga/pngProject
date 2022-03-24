@@ -7,7 +7,7 @@ import {
   query,
   orderBy,
 } from '@angular/fire/firestore';
-import { doc, setDoc, where } from 'firebase/firestore';
+import { deleteDoc, doc, setDoc, where } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { IImagen } from '../imagenes/imagen.interface';
 import { ICategoria } from '../interfaces/categoria.interface';
@@ -45,5 +45,10 @@ export class ImagenesService {
   updateImagen(imagen: IImagen) {
     const imagenActualizar = doc(this.firestore, `imagenes/${imagen.id}`);
     return setDoc(imagenActualizar, imagen);
+  }
+
+  deleteImagen(imagen: IImagen) {
+    const imagenEliminar = doc(this.firestore, `imagenes/${imagen.id}`);
+    return deleteDoc(imagenEliminar);
   }
 }

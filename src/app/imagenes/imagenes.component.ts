@@ -108,6 +108,13 @@ export class ImagenesComponent implements OnInit {
     }
   }
 
+  async eliminarImagenFirebase(imagen: IImagen) {
+    await this.ImagenesService.deleteImagen(imagen);
+    /* this.mensajeSwal.text = this.cliente.nombre + ' ha sido eliminado';
+    this.mensajeSwal.fire();
+    // Al eliminar, ponemos en blanco el formulario
+    this.agregarCliente(); */
+  }
   async modificarImagenFirebase(imagen: IImagen) {
     await this.ImagenesService.updateImagen(imagen);
     /* this.mensajeSwal.text = this.cliente.nombre + ' ha sido modificado';

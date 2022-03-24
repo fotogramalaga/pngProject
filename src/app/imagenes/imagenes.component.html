@@ -77,6 +77,10 @@
               <mat-icon class="fa fa-thumbs-up">
               </mat-icon>{{imagen.contadorLikes}}
             </button>
+            <button mat-button (click)="eliminarImagenFirebase(imagen)">
+              <mat-icon class="fa fa-trash">
+              </mat-icon>
+            </button>
           </mat-card-actions>
         </mat-card>
         <!-- <br>
