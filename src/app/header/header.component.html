@@ -1,4 +1,4 @@
-<header id="site-header" class="sticky-top bg-warning">
+<!-- <header id="site-header" class="sticky-top bg-warning">
   <div class="container">
     <nav class="navbar navbar-expand-lg stroke ">
       <a class="navbar-brand" href="#index.html">
@@ -24,6 +24,7 @@
             <a class="nav-link" href="#pie">Contacto</a>
           </li>
           <li>
+            //fun
             <button mat-mini-fab title="Cerrar sesión" class="cerrar-sesion" (click)="logout()">
               <mat-icon>directions_run</mat-icon>
               <span class="example-spacer"></span>
@@ -34,3 +35,83 @@
     </nav>
   </div>
 </header>
+ -->
+
+ <header class="menu">
+	<nav class="nav">
+		<ul class="ul">
+			<li class="li">
+				<a href="javascript:void(0);" class="links">
+					<span class="span first">
+						<i class="icon fa fa-lock" aria-hidden="true"></i>
+					</span>Login
+				</a>
+			</li>
+ 
+			<li class="li">
+				<a href="javascript:void(0);" class="links">
+					<span class="span second">
+						<i class="icon fa fa-archive" aria-hidden="true"></i>
+					</span>Categorias
+				</a>
+ 
+				<ul class="ul  ">
+					<li class="li">
+						<a href="javascript:void(0);" class="links">
+							Arte
+						</a>
+					</li>
+ 
+					<li class="li">
+						<a href="javascript:void(0);" class="links">
+							Paisaje
+						</a>
+					</li>
+ 
+					<li class="li">
+						<a href="javascript:void(0);" class="links">
+							Animales
+						</a>
+					</li>
+ 
+					<li class="li">
+						<a href="javascript:void(0);" class="links">
+							Deportes
+						</a>
+					</li>
+ 
+					<li class="li">
+						<a href="javascript:void(0);" class="links">
+							Mas18
+						</a>
+					</li>
+
+				</ul>
+				
+			</li>
+			<li class="li" (click)="addNewImage()">
+				<a href="javascript:void(0);" class="links">
+					<span class="span fourth">
+						<i class="icon fa fa-upload" aria-hidden="true"></i>
+					</span>Añadir Imágen
+				</a>
+			</li>
+			<li class="li">
+				<a href="javascript:void(0);" class="links">
+					<span class="span fourth">
+						<i class="icon fa fa-envelope" aria-hidden="true"></i>
+					</span>Nosotros
+				</a>
+			</li>
+ 
+      <li class="li">
+				<a href="javascript:void(0);" class="links">
+					<span class="span first">
+						<i class="icon fa fa-lock" aria-hidden="true"></i>
+					</span>Logout
+				</a>
+		</ul>
+	</nav>
+</header>
+
+

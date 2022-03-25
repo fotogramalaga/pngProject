@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {FormularioComponent } from './formulario/formulario.component';
+
 
 @Component({
   selector: 'app-header',
@@ -8,7 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private fireAuth: Auth, private router: Router) {}
+  constructor(private fireAuth: Auth, private router: Router, public dialog: MatDialog
+    ) {}
 
   ngOnInit(): void {}
 
@@ -16,4 +20,9 @@ export class HeaderComponent implements OnInit {
     this.fireAuth.signOut();
     this.router.navigateByUrl('/login');
   }
+  addNewImage(){
+    const dialogRef = this.dialog.open(FormularioComponent);
+
+  }
 }
+

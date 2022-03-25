@@ -35,6 +35,9 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './header/header.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FormularioComponent } from './header/formulario/formulario.component';
+
 
 @NgModule({
   declarations: [
@@ -46,10 +49,12 @@ import { HeaderComponent } from './header/header.component';
     HomeComponent,
     FooterComponent,
     HeaderComponent,
+    FormularioComponent,
   ],
   imports: [
     FontAwesomeModule,
     BrowserModule,
+    MatDialogModule,
     ButtonModule,
     CheckboxModule,
     InputTextareaModule,
