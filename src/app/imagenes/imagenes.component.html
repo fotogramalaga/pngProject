@@ -1,65 +1,13 @@
 <app-header></app-header>
 
+
+
 <!-- CODIFO NUEVO JuAN LUIS-->
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-4">
-      <div class="text-center mb-5">
-        <h3>Categorías</h3>
-      </div>
 
-      <div class="col-lg-4 col-md-6 col-xs-12">
-        <div *ngFor="let categoria of categorias">
-          <button class="large secundario w-full mt-2" (click)="getImagenes(categoria)">{{categoria.nombre}}</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-8">
-      <div class="text-center mb-5">
-        <h3>imagen</h3>
-      </div>
-
-      <div class="row">
-        <mat-card class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes">
-          <mat-card-header>
-            <mat-card-title>{{imagen.titulo}}</mat-card-title>
-            <mat-card-subtitle>{{nombreCategoria}}</mat-card-subtitle>
-          </mat-card-header><img mat-card-image class="img-fluid mx-0" [src]="imagen.rutaImagen"
-            [alt]="imagen.descripcion">
-          <mat-card-content>
-            <p>{{imagen.descripcion}}
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>
-              <mat-icon [class.corazon]="imagen.favorito" (click)="setFavorito(imagen)">
-                favorite_border
-              </mat-icon>
-            </button>
-            <button mat-button (click)="like(imagen)">
-              <mat-icon class="fa fa-thumbs-up">
-              </mat-icon>{{imagen.contadorLikes}}
-            </button>
-            <button mat-button (click)="eliminarImagenFirebase(imagen)">
-              <mat-icon class="fa fa-trash">
-              </mat-icon>
-            </button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-    </div>
     <form #f="ngForm">
-      <!-- <div class="form-group">
-          <label>Título</label>
-        <input type="text" class="form-control" name="titulo" [(ngModel)]="imagen.titulo" required
-          [class.error]="f.controls['titulo']?.invalid && f.controls['titulo']?.touched" minlength="5" />
-        <p class="error-mensaje text-danger mt-1 ml-4"
-          *ngIf="f.controls['titulo']?.invalid && f.controls['titulo']?.touched"  >
-          Título obligatorio
-        </p>
-      </div> -->
-
       <div class="form-floating">
         <label for="floatingTextarea2">Título</label>
         <input type="text" class="form-control" name="titulo" [(ngModel)]="imagen.titulo" required
@@ -70,20 +18,10 @@
           Título obligatorio
         </p>
       </div>
-
-
-
-
-
-      <!-- <form>
-      <label for="title" class="block text-900 font-medium mb-2">Título</label>
-      <input class="formTitle" id="titulo" [(ngModel)]="imagen.titulo" placeholder="Titula tu imagen" required
-         /> -->
       <label for="descripcion" class="block text-900 font-medium mb-2">Descripción</label>
       <textarea id="descripcion" type="text" pInputText class="w-full mb-3" name="descripcion" maxlength="50" required
         [(ngModel)]="imagen.descripcion"></textarea>
       <br>
-
 
       <label for="inputCategorias">Categorías</label>
       <div id="inputCategorias">
@@ -98,10 +36,85 @@
       <button label="Agregar imagen" icon="pi pi-plus" class="w-full" (click)="addImagen()">Agregar Imagen</button>
     </form>
   </div>
+
+  <p-confirmDialog [style]="{ width: '50vw' }" [baseZIndex]="10000" acceptButtonStyleClass="p-button-primary"
+    [rejectVisible]="false" acceptLabel="Aceptar"></p-confirmDialog>
+
+
+
+
+  <!-- <div class="col-lg-4">
+      <div class="text-center mb-5">
+        <h3>Categorías</h3>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-xs-12">
+        <div *ngFor="let categoria of categorias">
+          <button class="large secundario w-full mt-2" (click)="getImagenes(categoria)">{{categoria.nombre}}</button>
+        </div>
+      </div>
+    </div> -->
+  <div class="col-lg-12">
+    <div class="text-center mb-5">
+      <h2>Galería de Imágenes</h2>
+    </div>
+
+    <div class="row">
+      <mat-card class="card col-lg-4 col-md-6 col-xs-12" *ngFor="let imagen of imagenes">
+        <mat-card-header>
+          <mat-card-title>{{imagen.titulo}}</mat-card-title>
+          <mat-card-subtitle>{{nombreCategoria}}</mat-card-subtitle>
+        </mat-card-header><img mat-card-image class="img-fluid mx-0" [src]="imagen.rutaImagen"
+          [alt]="imagen.descripcion">
+        <mat-card-content>
+          <p>{{imagen.descripcion}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>
+            <mat-icon [class.corazon]="imagen.favorito" (click)="setFavorito(imagen)">
+              favorite_border
+            </mat-icon>
+          </button>
+          <button mat-button (click)="like(imagen)">
+            <mat-icon class="fa fa-thumbs-up">
+            </mat-icon>{{imagen.contadorLikes}}
+          </button>
+          <button mat-button (click)="eliminarImagenFirebase(imagen)">
+            <mat-icon class="fa fa-trash">
+            </mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </div>
 
-<p-confirmDialog [style]="{ width: '50vw' }" [baseZIndex]="10000" acceptButtonStyleClass="p-button-primary"
-  [rejectVisible]="false" acceptLabel="Aceptar"></p-confirmDialog>
+
+<!-- <div class="form-group">
+          <label>Título</label>
+        <input type="text" class="form-control" name="titulo" [(ngModel)]="imagen.titulo" required
+          [class.error]="f.controls['titulo']?.invalid && f.controls['titulo']?.touched" minlength="5" />
+        <p class="error-mensaje text-danger mt-1 ml-4"
+          *ngIf="f.controls['titulo']?.invalid && f.controls['titulo']?.touched"  >
+          Título obligatorio
+        </p>
+      </div> -->
+
+
+
+
+
+
+
+<!-- <form>
+      <label for="title" class="block text-900 font-medium mb-2">Título</label>
+      <input class="formTitle" id="titulo" [(ngModel)]="imagen.titulo" placeholder="Titula tu imagen" required
+         /> -->
+<!--  -->
+
+
+
 
 
 <app-footer></app-footer>
