@@ -1,36 +1,55 @@
-<h2 mat-dialog-title>Install Angular</h2>
+<div class="row">
+  <h2 mat-dialog-title class="text-center">Añade tu Imagen</h2>
+  <button mat-button mat-dialog-close class="align-content-end">Cerrar</button>
+</div>
 <mat-dialog-content class="mat-typography">
-    <form #f="ngForm">
-        <div class="form-floating">
-          <label for="floatingTextarea2">Título</label>
-          <input type="text" class="form-control" name="titulo" [(ngModel)]="imagen.titulo" required
-            [class.error]="f.controls['titulo']?.invalid && f.controls['titulo']?.touched" minlength="5"
-            placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" />
-          <p class="error-mensaje text-danger mt-1 ml-4"
-            *ngIf="f.controls['titulo']?.invalid && f.controls['titulo']?.touched">
-            Título obligatorio
-          </p>
-        </div>
-        <label for="descripcion" class="block text-900 font-medium mb-2">Descripción</label>
-          <textarea id="descripcion" type="text" pInputText class="w-full mb-3" name="descripcion" maxlength="50" required
-            [(ngModel)]="imagen.descripcion"></textarea>
-          <br>
-    
-        <label for="inputCategorias">Categorías</label>
-        <div id="inputCategorias">
-          <button *ngFor="let categoria of categorias" class="large secundario w-full mt-2"
-            [class.selected]="categoria.selected" (click)="eligeCategoria(categoria)">{{categoria.nombre}}</button>
-        </div>
-    
-        <label for="imagenParaSubir" class="block text-900 font-medium mb-2">Imagen</label>
-        <input id="imagenParaSubir" type="file" pInputText class="w-full mb-3" name="imagenParaSubir"
-          (change)="elegidaImagen($event)" />
-    
-        <button label="Agregar imagen" icon="pi pi-plus" class="w-full" (click)="addImagen()">Agregar Imagen</button>
-      </form>
-	  </mat-dialog-content>
-	  <mat-dialog-actions align="end">
-		<button mat-button mat-dialog-close>Cancel</button>
-		<button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
-	  </mat-dialog-actions>
-	  
+
+  <form #f="ngForm">
+    <!-- <button mat-button mat-dialog-close></button> -->
+    <!-- <div class="form-floating">
+      <label for="floatingTextarea2">Título</label>
+      <input type="text" class="form-control" name="titulo" [(ngModel)]="imagen.titulo" required
+        [class.error]="f.controls['titulo']?.invalid && f.controls['titulo']?.touched" minlength="5"
+        placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" />
+      <p class="error-mensaje text-danger mt-1 ml-4"
+        *ngIf="f.controls['titulo']?.invalid && f.controls['titulo']?.touched">
+        Título obligatorio
+      </p>
+    </div> -->
+    <p>
+      <mat-form-field appearance="fill" [(ngModel)]="imagen.titulo">
+        <mat-label>Título</mat-label>
+        <input matInput placeholder="Titula tu imagen" required>
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Descripción</mat-hint>
+      </mat-form-field>
+    </p>
+    <mat-form-field appearance="fill">
+      <mat-label>Textarea</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+    <!-- <label for="descripcion" class="block text-900 font-medium mb-2">Descripción</label>
+    <textarea id="descripcion" type="text" pInputText class="w-full mb-3" name="descripcion" maxlength="50" required
+      [(ngModel)]="imagen.descripcion"></textarea> -->
+    <br>
+
+    <label for="inputCategorias">Categorías</label>
+    <div id="inputCategorias">
+      <button *ngFor="let categoria of categorias" class="large secundario w-full mt-2 botonesFormulario"
+        [class.selected]="categoria.selected" (click)="eligeCategoria(categoria)">{{categoria.nombre}}</button>
+    </div>
+
+    <label for="imagenParaSubir" class="block text-900 font-medium mb-2">Imagen</label>
+    <input id="imagenParaSubir" type="file" pInputText class="w-full mb-3" name="imagenParaSubir"
+      (change)="elegidaImagen($event)" />
+
+    <button label="Agregar imagen" icon="pi pi-plus" class="w-full" (click)="addImagen()">Agregar Imagen</button>
+  </form>
+</mat-dialog-content>
+<!-- <mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions> -->
+
+<p-confirmDialog [style]="{ width: '50vw' }" [baseZIndex]="10000" acceptButtonStyleClass="p-button-primary"
+  [rejectVisible]="false" acceptLabel="Aceptar"></p-confirmDialog>
