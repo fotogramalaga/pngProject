@@ -37,81 +37,65 @@
 </header>
  -->
 
- <header class="menu">
-	<nav class="nav">
-		<ul class="ul">
-			<li class="li">
-				<a href="javascript:void(0);" class="links">
-					<span class="span first">
-						<i class="icon fa fa-lock" aria-hidden="true"></i>
-					</span>Login
-				</a>
-			</li>
- 
-			<li class="li">
-				<a href="javascript:void(0);" class="links">
-					<span class="span second">
-						<i class="icon fa fa-archive" aria-hidden="true"></i>
-					</span>Categorias
-				</a>
- 
-				<ul class="ul  ">
-					<li class="li">
-						<a href="javascript:void(0);" class="links">
-							Arte
-						</a>
-					</li>
- 
-					<li class="li">
-						<a href="javascript:void(0);" class="links">
-							Paisaje
-						</a>
-					</li>
- 
-					<li class="li">
-						<a href="javascript:void(0);" class="links">
-							Animales
-						</a>
-					</li>
- 
-					<li class="li">
-						<a href="javascript:void(0);" class="links">
-							Deportes
-						</a>
-					</li>
- 
-					<li class="li">
-						<a href="javascript:void(0);" class="links">
-							Mas18
-						</a>
-					</li>
-
-				</ul>
-				
-			</li>
-			<li class="li" (click)="addNewImage()">
-				<a href="javascript:void(0);" class="links">
-					<span class="span fourth">
-						<i class="icon fa fa-upload" aria-hidden="true"></i>
-					</span>Añadir Imágen
-				</a>
-			</li>
-			<li class="li">
-				<a href="javascript:void(0);" class="links">
-					<span class="span fourth">
-						<i class="icon fa fa-envelope" aria-hidden="true"></i>
-					</span>Nosotros
-				</a>
-			</li>
- 
+<header class="menu">
+  <nav class="nav">
+    <ul class="ul">
       <li class="li">
-				<a href="javascript:void(0);" class="links">
-					<span class="span first">
-						<i class="icon fa fa-lock" aria-hidden="true"></i>
-					</span>Logout
-				</a>
-		</ul>
-	</nav>
+        <a href="javascript:void(0);" class="links">
+          <span class="span first">
+            <i class="icon fa fa-lock" aria-hidden="true"></i>
+          </span>Login
+        </a>
+      </li>
+      <li class="li">
+        <a routerLink="/imagenes" class="links">
+          <span class="span fourth">
+            <i class="icon fa fa-upload" aria-hidden="true"></i>
+          </span>Home
+        </a>
+      </li>
+
+      <li class="li">
+        <a href="javascript:void(0);" class="links">
+          <span class="span second">
+            <i class="icon fa fa-archive" aria-hidden="true"></i>
+          </span>Categorias
+        </a>
+
+        <ul class="ul  ">
+          <li class="li" *ngFor="let categoria of categorias">
+            <a class="links" (click)="getImagenes(categoria)">{{categoria.nombre}}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="li">
+        <a routerLink="/favoritos" class="links">
+          <span class="span fourth">
+            <i class="icon fa fa-star" aria-hidden="true"></i>
+          </span>Favoritos
+        </a>
+      </li>
+      <li class="li" (click)="addNewImage()">
+        <a href="javascript:void(0);" class="links">
+          <span class="span fourth">
+            <i class="icon fa fa-upload" aria-hidden="true"></i>
+          </span>Añadir Imágenes
+        </a>
+      </li>
+      <li class="li">
+        <a href="javascript:void(0);" class="links">
+          <span class="span fourth">
+            <i class="icon fa fa-envelope" aria-hidden="true"></i>
+          </span>Nosotros
+        </a>
+      </li>
+
+      <li class="li">
+        <a href="javascript:void(0);" class="links">
+          <span class="span first">
+            <i class="icon fa fa-lock" aria-hidden="true"></i>
+          </span>Logout
+        </a>
+    </ul>
+  </nav>
 </header>
-
-
