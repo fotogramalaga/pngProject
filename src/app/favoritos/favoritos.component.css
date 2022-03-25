@@ -1,0 +1,118 @@
+/* BOTONES */
+
+button.icono {
+  min-width: fit-content;
+  max-width: none;
+}
+
+button:hover {
+  box-shadow: 0px 2px #003DA5;
+  background-position: center;
+  transition: background 0.8s;
+  background: #00BB31 radial-gradient(circle, transparent 1%, #00BB31 1%) center/15000%;
+}
+
+button.icono:hover {
+  background: none;
+  box-shadow: none;
+}
+
+
+
+
+.selected {
+  color: white;
+  border: 1px solid #00BB31;
+  box-shadow: none;
+  background-color: #8EDD65;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+button.icono.selected {
+  background-color: white;
+  border: none;
+}
+
+button.icono:focus {
+  background-color: white;
+  box-shadow: none;
+}
+
+.corazon {
+  background-color: white;
+  /* box-shadow: 0 0 20px 15px Crimson; */
+  transition: 200ms all;
+  color: crimson;
+}
+
+button:focus {
+  color: white;
+  box-shadow: 0px 2px 0px #8EDD65;
+  background-color: #8EDD65;
+  color: #003DA5;
+}
+
+
+button:disabled {
+  color: #BBBBBB;
+  cursor: not-allowed;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  /* Tipografía */
+  text-align: center;
+  font-family: termina, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  min-width: 150px;
+  max-width: 150px
+}
+
+
+.block {
+  display: block;
+  width: 100%;
+  height: 48px;
+  border: none;
+  box-shadow: 0px 2px 0px #00BB31;
+}
+
+
+.large {
+  display: inline-block;
+  padding: 0px 32px 0px 32px;
+  height: 48px;
+  box-shadow: 0px 2px 0px #00BB31;
+}
+
+
+.secundario {
+  background-color: #EEEEEE;
+  color: #003DA5;
+}
+
+.error {
+  border: 1px solid red !important;
+}
+
+.error-mensaje {
+  font-size: x-small;
+}
+
+mat-card.card:hover {
+  transform: scale(1.1);
+  transition: 200ms all;
+  box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
+}
+
+/*Para cuando salimos de la tarjeta, se anime al contrario*/
+mat-card.card {
+  transition: 200ms all;
+  margin: .85em;
+}
