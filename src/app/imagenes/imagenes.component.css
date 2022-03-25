@@ -1,11 +1,23 @@
 /* BOTONES */
 
+button.icono {
+  min-width: fit-content;
+  max-width: none;
+}
+
 button:hover {
   box-shadow: 0px 2px #003DA5;
   background-position: center;
   transition: background 0.8s;
   background: #00BB31 radial-gradient(circle, transparent 1%, #00BB31 1%) center/15000%;
 }
+
+button.icono:hover {
+  background: none;
+  box-shadow: none;
+}
+
+
 
 
 .selected {
@@ -17,9 +29,21 @@ button:hover {
   transition: background 0s;
 }
 
+button.icono.selected {
+  background-color: white;
+  border: none;
+}
+
+button.icono:focus {
+  background-color: white;
+  box-shadow: none;
+}
+
 .corazon {
-  filter: drop-shadow (10px 10px 10px Crimson);
-  box-shadow: 0 0 20px 15px Crimson;
+  background-color: white;
+  /* box-shadow: 0 0 20px 15px Crimson; */
+  transition: 200ms all;
+  color: crimson;
 }
 
 button:focus {
@@ -90,4 +114,5 @@ mat-card.card:hover {
 /*Para cuando salimos de la tarjeta, se anime al contrario*/
 mat-card.card {
   transition: 200ms all;
+  margin: .85em;
 }
