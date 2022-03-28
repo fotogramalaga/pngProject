@@ -124,3 +124,4 @@ mat-card.card {
 .fa-door-closed {
   font-size: 20px;
 }
+@import "node_modules/sweetalert2/src/sweetalert2";
