@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { IProducto } from '../../interfaces/producto.interface';
 import { ImagenesService } from '../../services/productos.service';
 import { ICategoria } from '../../interfaces/categoria.interface';
 import { ConfirmationService } from 'primeng/api';
 import { IImagen } from '../../interfaces/imagen.interface';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import Swal from 'sweetalert2';
+import "node_modules/sweetalert2/src/sweetalert2";
 
 @Component({
   selector: 'app-formulario',
@@ -12,6 +14,9 @@ import { IImagen } from '../../interfaces/imagen.interface';
   styleUrls: ['./formulario.component.css'],
 })
 export class FormularioComponent implements OnInit {
+  @ViewChild('confirmarEliminar') deleteSwal!: SwalComponent;
+  @ViewChild('mensaje') mensajeSwal!: SwalComponent
+  //@ViewChild('modalFormulario') modalFormulario!: NgbModal;
   idCategoria: string = '';
   imagen: IImagen = {
     titulo: '',
@@ -81,26 +86,65 @@ export class FormularioComponent implements OnInit {
     console.log(this.imagenParaSubir);
   }
 
-  async addImagen() {
-    let estaCategoria: string = '';
-    this.categorias.forEach(function (x) {
-      if (x.selected == true) estaCategoria = x.id;
-    });
-    console.log(estaCategoria);
+//  async addImagen() {
+//    let estaCategoria: string = '';
+//    this.categorias.forEach(function (x) {
+//      if (x.selected == true) estaCategoria = x.id;
+//    });
+//    console.log(estaCategoria);
+//    if (this.categoriaSeleccionada == '0') {
+//      alert('Tienes que elegir una categoría.');
+//    } else {
+//      const storage = getStorage();
+//      const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
+//      const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
+ //     this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
+ //     this.imagen.categoria = estaCategoria;
+//      await this.ImagenesService.addImagen(this.imagen);
+//      this.confirmationService.confirm({
+//        message: 'Imagen añadida correctamente',
+//        header: 'OK',
+//        icon: 'pi pi-check',
+ //     });
+
+//
+showToast(){
+  Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, title: 'Success!', text: 'Sweet Alert Toast', icon: 'success', });
+    }
+
+showMessage(){
+      Swal.fire({ text: 'Hello!', icon: 'success'});
+    }
+    //
+
+async addImagen() {
+  let estaCategoria: string = '';
+  this.categorias.forEach(function (x) {
+    if (x.selected == true) estaCategoria = x.id;
+  });
+      console.log(estaCategoria);
     if (this.categoriaSeleccionada == '0') {
-      alert('Tienes que elegir una categoría.');
-    } else {
-      const storage = getStorage();
-      const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
-      const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
-      this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
-      this.imagen.categoria = estaCategoria;
-      await this.ImagenesService.addImagen(this.imagen);
-      this.confirmationService.confirm({
-        message: 'Imagen añadida correctamente',
-        header: 'OK',
-        icon: 'pi pi-check',
-      });
+  Swal.fire({ text: 'Tienes que elegir una categoría.'});
+  } else {
+    const storage = getStorage();
+    const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
+    const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
+    this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
+    this.imagen.categoria = estaCategoria;
+    await this.ImagenesService.addImagen(this.imagen);
+    Swal.fire({ text: 'Imagen añadida correctamente'});
+    //this.confirmationService.confirm({
+    // message: 'Imagen añadida correctamente',
+    //  header: 'OK',
+    //  icon: 'pi pi-check',
+   // });
+
+
+
+
+
+
+
       // Resetear el producto
       this.imagen.titulo = '';
       this.imagen.descripcion = '';
