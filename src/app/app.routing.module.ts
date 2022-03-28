@@ -4,7 +4,7 @@ import { ErrorComponent } from './error/error.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { HomeComponent } from './home/home.component';
 import { ImagenesComponent } from './imagenes/imagenes.component';
-
+import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
@@ -13,6 +13,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'imagenes', component: ImagenesComponent },
   { path: 'favoritos', component: FavoritosComponent },
+  { path: 'footer', component: FooterComponent },
   { path: '**', component: ErrorComponent },
 ];
 

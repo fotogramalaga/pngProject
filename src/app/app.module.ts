@@ -37,6 +37,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './header/header.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { FormularioComponent } from './header/formulario/formulario.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { FormularioComponent } from './header/formulario/formulario.component';
     MatListModule,
     FormsModule,
     AppRoutingModule,
+    SweetAlert2Module,
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
