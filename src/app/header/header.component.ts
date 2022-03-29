@@ -1,9 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output,ViewChild } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from './formulario/formulario.component';
 import { ICategoria } from '../interfaces/categoria.interface';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import Swal from 'sweetalert2';
+import "node_modules/sweetalert2/src/sweetalert2";
 
 @Component({
   selector: 'app-header',
@@ -11,6 +14,8 @@ import { ICategoria } from '../interfaces/categoria.interface';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild('confirmarEliminar') deleteSwal!: SwalComponent;
+  @ViewChild('mensaje') mensajeSwal!: SwalComponent
   @Output() getCategoria: EventEmitter<ICategoria> = new EventEmitter();
   categorias: ICategoria[] = [
     { id: '1', nombre: 'Arte', selected: true },
@@ -35,7 +40,37 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(FormularioComponent);
   }
 
+ // getImagenes(categoria: ICategoria) {
+ //   this.getCategoria.emit(categoria);
+ // }
+
+
+
+
+
   getImagenes(categoria: ICategoria) {
-    this.getCategoria.emit(categoria);
+    if (categoria.id!= '5') {
+      this.getCategoria.emit(categoria);
+    } else {
+      Swal.fire({
+        title: 'Confirma si eres mayor de 18 años',
+        input: 'checkbox',
+        inputPlaceholder: 'Si tengo más de 18 años'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (result.value) {
+            Swal.fire({icon: 'success', text: 'Puedes ver esta categorñia'});
+            this.getCategoria.emit(categoria);
+          } else {
+            Swal.fire({icon: 'error', text: "No puedes ver esta categoría :("});
+          }
+        } else {
+          console.log(`modal was dismissed by ${result.dismiss}`)
+        }
+      })
+
   }
+  }
+
+
 }

@@ -66,11 +66,13 @@ export class FormularioComponent implements OnInit {
     );
   } */
 
-  eligeCategoria(categoria: ICategoria) {
+   eligeCategoria(categoria: ICategoria) {
     this.categorias.forEach((x) => (x.selected = false));
     categoria.selected = true;
-    this.categoriaSeleccionada = categoria.id;
-  }
+  this.categoriaSeleccionada = categoria.id;
+ }
+
+
 
   /* getProductos(categoria: ICategoria) {
     this.idCategoria = categoria.id;
@@ -107,15 +109,7 @@ export class FormularioComponent implements OnInit {
 //        icon: 'pi pi-check',
  //     });
 
-//
-showToast(){
-  Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, title: 'Success!', text: 'Sweet Alert Toast', icon: 'success', });
-    }
 
-showMessage(){
-      Swal.fire({ text: 'Hello!', icon: 'success'});
-    }
-    //
 
 async addImagen() {
   let estaCategoria: string = '';
