@@ -1,8 +1,5 @@
 # PngProject
 
-Eva Prueba
-Ciao pescao
-
 .PNG es una red social visual. Disfrútala como una herramienta de descubrimiento visual, que puedes usar para encontrar ideas para tus proyectos e intereses. En la que podrás recopilar imágenes y almacenar tus preferidas por categorías
 
 ## Development server
