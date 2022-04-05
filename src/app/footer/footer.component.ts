@@ -12,4 +12,8 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  function footerToggle(footerBtn) {
+    $(footerBtn).toggleClass("btnActive");
+    $(footerBtn).next().toggleClass("active");
 }
+
