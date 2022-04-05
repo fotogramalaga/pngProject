@@ -33,10 +33,10 @@ export class FormularioComponent implements OnInit {
   imagenParaSubir: any;
   categorias: ICategoria[] = [
     { id: '1', nombre: 'Arte', selected: true },
-    { id: '2', nombre: 'Paisaje', selected: false },
+    { id: '2', nombre: 'Naturaleza', selected: false },
     { id: '3', nombre: 'Animales', selected: false },
     { id: '4', nombre: 'Deportes', selected: false },
-    { id: '5', nombre: 'Mas18', selected: false },
+    { id: '5', nombre: 'Mayor 18', selected: false },
   ];
   /* usuario!: User; */
   categoriaSeleccionada = '0';

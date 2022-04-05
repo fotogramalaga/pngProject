@@ -19,10 +19,10 @@ export class HeaderComponent implements OnInit {
   @Output() getCategoria: EventEmitter<ICategoria> = new EventEmitter();
   categorias: ICategoria[] = [
     { id: '1', nombre: 'Arte', selected: true },
-    { id: '2', nombre: 'Paisaje', selected: false },
+    { id: '2', nombre: 'Naturaleza', selected: false },
     { id: '3', nombre: 'Animales', selected: false },
     { id: '4', nombre: 'Deportes', selected: false },
-    { id: '5', nombre: 'Mas18', selected: false },
+    { id: '5', nombre: 'Mayor 18', selected: false },
   ];
   constructor(
     private fireAuth: Auth,
@@ -48,11 +48,11 @@ export class HeaderComponent implements OnInit {
       Swal.fire({
         title: 'Confirma si eres mayor de 18 años',
         input: 'checkbox',
-        inputPlaceholder: 'Si tengo más de 18 años'
+        inputPlaceholder: 'Sí, tengo más de 18 años'
       }).then((result) => {
         if (result.isConfirmed) {
           if (result.value) {
-            Swal.fire({icon: 'success', text: 'Puedes ver esta categorñia'});
+            Swal.fire({icon: 'success', text: 'Puedes ver esta categoría'});
             this.getCategoria.emit(categoria);
           } else {
             Swal.fire({icon: 'error', text: "No puedes ver esta categoría :("});
