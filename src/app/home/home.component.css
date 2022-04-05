@@ -2,6 +2,7 @@
   width: 4em;
 }
 
+
 .camera {
 	position: relative;
 	height: 450px;
@@ -15,7 +16,7 @@
 	position: absolute;
 	height: 200px;
 	width: 300px;
-	background: #FAD7CA;
+	background: #eff303;
 	top: 60px;
 	left: 50%;
 	margin-left: -150px;

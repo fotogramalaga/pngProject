@@ -40,13 +40,6 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(FormularioComponent);
   }
 
- // getImagenes(categoria: ICategoria) {
- //   this.getCategoria.emit(categoria);
- // }
-
-
-
-
 
   getImagenes(categoria: ICategoria) {
     if (categoria.id!= '5') {
