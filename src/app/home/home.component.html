@@ -1,11 +1,16 @@
 <div class="container">
 <app-header></app-header>
     <section>
-      <h1 align="center"><b>PNG</b> Comparte tus imágenes favoritas</h1>
-      <p>.PNG es una red social visual. Disfrútala como una herramienta de descubrimiento visual, que puedes usar para
-        encontrar ideas para tus proyectos e intereses. En la que podrás recopilar imágenes y almacenar tus preferidas
-        por categorías.
+      <h1><strong>PNG</strong> La red visual que te inspirará</h1>
+      <p><strong>PNG</strong> es una red social visual. ¡Disfrútala!, podrás recopilar imágenes y almacenar tus preferidas
+        por categorías. Además puedes subir tus fotos, asi podrás encontrar ideas para tus proyectos e intereses y crear tu
+        propio rincón de inspiración.
       </p>
+      <p>
+        Aquí teneis una muestra, entrad para poder empezar!
+      </p>
+
+
     </section>
     <section>
       <div class="camera">
@@ -44,5 +49,94 @@
         </div>
       </div>
     </section>
-<app-footer></app-footer>
+    <footer>
+      <div class="row">
+        <div class="col-4" style="justify-content: center;" >
+          <h3 id="subtitulo" class="pr-lg-5">
+            Disfruta y comparte tus imágenes favoritas con <br> <b>Photo Net Group</b>
+          </h3>
+          <img id="logo"  src="../../assets/img/logo2.jpeg" alt="Imagen logo PNG">
+        </div>
+        <div class="col-4" style="text-align: justify;">
+
+          <ul class="footer-cat-links" id="listalinks">
+            <li>
+              <a routerLink="" (click)="me()"> <span>Imágenes</span></a>
+            </li>
+            <li>
+              <a routerLink="" (click)="me()"><span>Favoritos</span></a>
+            </li>
+            <li>
+              <a routerLink="" (click)="me2()"><span>Contacto</span></a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-4" id="newsletter">
+          <span>Localización</span> <br> <br>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14464.013727598489!2d-71.00875477187985!3d24.999999343810693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89451ab5034cb7ab%3A0xb600ecf3df7aca4d!2sTri%C3%A1ngulo%20de%20las%20Bermudas!5e0!3m2!1ses!2ses!4v1649150962729!5m2!1ses!2ses"
+            width="350"
+            height="250"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe> <br> <br>
+
+          <div class="social-links social-2">
+            <a href="https://es-es.facebook.com/"
+            target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href=""><i class="fab fa-linkedin-in"></i></a>
+            <a href=""><i class="fab fa-instagram"></i></a>
+          </div>
+
+          <div>
+            <ul>
+              <li class=" footer-cat-links">
+                <i class="fa fa-location-dot fa-lg "></i>
+
+                  <a href="https://goo.gl/maps/x856kFYcXnFvcoCcA"  id="direccion">
+                    &nbsp; Triángulo de las Bermudas, SN
+                  </a>
+
+              </li>
+              <li class=" footer-cat-links">
+                <i class="fa fa-phone fa-lg "></i>
+
+                  <a  href="5550113"
+                  > &nbsp; +(34) 555-01-13</a
+                >
+
+              </li>
+              <li class=" footer-cat-links">
+                <i class="fa fa-envelope-open-o fa-lg  "></i>
+
+                  <a href="mailto:photonetgroup@png.com" class=" mail "  style="font-size: 17px">
+                    &nbsp; photonetgroup@png.com
+                  </a>
+
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="social-links social-1 col-6">
+          <a href="https://es-es.facebook.com/" target="_blank"
+            ><i class="fab fa-facebook-f "></i
+          ></a>
+          <a href="https://es.linkedin.com/"
+          target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/?hl=es"
+          target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div id="copyright">&copy; Todos los derechos reservados 2021-2022</div>
+      <div id="owner">
+        <span>
+          Diseñado por Photo Net Group
+        </span>
+      </div>
+    </footer>
+    <a href="../home/home.component.html" class="btn btn-lg btn-dark">Volver</a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="StyleiTechFooter.js"></script>
 </div>
