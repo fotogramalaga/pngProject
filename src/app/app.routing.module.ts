@@ -8,7 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'imagenes', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'imagenes', component: ImagenesComponent },

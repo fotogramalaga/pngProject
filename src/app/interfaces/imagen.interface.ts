@@ -1,11 +1,15 @@
 export interface IImagen {
-  id?: string;
+  id: string;
   titulo: string;
   categoria: string;
   fecha: Date;
   descripcion: string;
   contadorLikes: number;
   rutaImagen: string;
-  like: boolean;
+  emailPropietario: string | null;
+  nombrePropietario: string | null;
+  avatarUsuario: string | null;
   favorito: boolean;
+  listaLikes: string[];
+  listaFavs: string[];
 }

@@ -37,9 +37,12 @@ export class ImagenesService {
     }) as Observable<IImagen[]>;
   }
 
-  getFavoritos(): Observable<IImagen[]> {
+  getFavoritos(id: string): Observable<IImagen[]> {
     const imagenes = collection(this.firestore, 'imagenes');
-    const imagenesFavoritas = query(imagenes, where('favorito', '==', true));
+    const imagenesFavoritas = query(
+      imagenes,
+      where('listaFavs', 'array-contains', id)
+    );
     return collectionData(imagenesFavoritas, {
       idField: 'id',
     }) as Observable<IImagen[]>;

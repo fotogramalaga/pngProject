@@ -116,3 +116,11 @@ mat-card.card {
   transition: 200ms all;
   margin: .85em;
 }
+
+.example-header-image {
+  background-size: cover;
+}
+
+.like {
+  color: #003DA5;
+}

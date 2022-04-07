@@ -30,13 +30,14 @@ export class ImagenesComponent implements OnInit {
 
 /* TYPESCRIPT JUAN LUIS */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth, User } from '@angular/fire/auth';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { IProducto } from '../interfaces/producto.interface';
 import { ImagenesService } from '../services/productos.service';
+import { UsuariosService } from '../services/usuario.service';
 import { ICategoria } from '../interfaces/categoria.interface';
+import { IUsuario } from '../interfaces/usuario.interface';
 import { ConfirmationService } from 'primeng/api';
 import { IImagen } from '../interfaces/imagen.interface';
 import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons';
@@ -49,23 +50,34 @@ import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons';
 export class ImagenesComponent implements OnInit {
   faCoffee = faCoffee;
   idCategoria: string = '';
+  pagImagenes = 'imagenes';
+  usuario: IUsuario = {
+    id: '',
+    nombre: '',
+    email: '',
+    favoritas: [],
+    likes: [],
+    subidas: [],
+  };
+
   imagen: IImagen = {
+    id: '',
     titulo: '',
     categoria: '',
     descripcion: '',
     fecha: new Date(),
     contadorLikes: 0,
-    rutaImagen: '../../assets/img/18/nederotico.png',
-    like: false,
+    rutaImagen: '',
+    emailPropietario: '',
+    nombrePropietario: '',
+    avatarUsuario: '',
     favorito: false,
+    listaLikes: [],
+    listaFavs: [],
   };
   imagenes: IImagen[] = [];
+  usuarios: IUsuario[] = [];
   nombreCategoria: string = '';
-  nuevoProducto: IProducto = {
-    descripcion: '',
-    imagenURL: '',
-    idCategoria: '',
-  };
   imagenParaSubir: any;
   categorias: ICategoria[] = [
     { id: '1', nombre: 'Arte', selected: true },
@@ -74,21 +86,44 @@ export class ImagenesComponent implements OnInit {
     { id: '4', nombre: 'Deportes', selected: false },
     { id: '5', nombre: 'Mas18', selected: false },
   ];
-  usuario!: User;
+  usuarioG!: User;
   categoriaSeleccionada = '0';
   constructor(
     private fireAuth: Auth,
-    private router: Router,
+    public router: Router,
     private ImagenesService: ImagenesService,
+    private UsuariosService: UsuariosService,
     private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
-    this.usuario = this.fireAuth.currentUser!;
-    if (!this.usuario) {
+    this.usuarioG = this.fireAuth.currentUser!;
+    if (!this.usuarioG) {
       this.router.navigateByUrl('imagenes');
     }
     this.getImagenes(this.categorias[0]);
+    //this.getUsuario();
+  }
+
+  getUsuario() {
+    let usuarioRegistrado = false;
+    this.UsuariosService.getUsuarios().subscribe((usuarios: IUsuario[]) => {
+      this.usuarios = usuarios;
+    });
+    console.log(this.usuarios);
+    this.usuarios.forEach((usuario) => {
+      console.log(usuario);
+      if (usuario.email == this.usuarioG.email) usuarioRegistrado = true;
+    });
+    if (!usuarioRegistrado) {
+      this.usuario.email = this.usuarioG.email;
+      this.usuario.nombre = this.usuarioG.displayName;
+      this.addUsuario();
+    }
+  }
+
+  async addUsuario() {
+    await this.UsuariosService.addUsuario(this.usuario);
   }
 
   getImagenes(categoria?: ICategoria) {
@@ -96,17 +131,40 @@ export class ImagenesComponent implements OnInit {
     this.ImagenesService.getImagenes(categoria?.id).subscribe(
       (imagenes: IImagen[]) => {
         this.imagenes = imagenes;
-        //this.getProductos(this.categorias[0]);
       }
     );
   }
 
-  like(imagen: IImagen) {
-    if (imagen.like == false) {
+  getLike(imagen: IImagen) {
+    return imagen.listaLikes.includes(this.usuarioG.uid);
+  }
+
+  setLike(imagen: IImagen) {
+    if (!this.getLike(imagen)) {
       imagen.contadorLikes++;
-      imagen.like = true;
-      this.modificarImagenFirebase(imagen);
+      imagen.listaLikes.push(this.usuarioG.uid);
+    } else {
+      const index = imagen.listaLikes.indexOf(this.usuarioG.uid);
+      imagen.listaLikes.splice(index, 1);
+      imagen.contadorLikes--;
     }
+    console.log(imagen.listaLikes);
+    this.modificarImagenFirebase(imagen);
+    //this.modificarUsuarioFirebase();
+  }
+
+  getFav(imagen: IImagen) {
+    return imagen.listaFavs.includes(this.usuarioG.uid);
+  }
+
+  setFav(imagen: IImagen) {
+    if (!this.getFav(imagen)) {
+      imagen.listaFavs.push(this.usuarioG.uid);
+    } else {
+      const index = imagen.listaFavs.indexOf(this.usuarioG.uid);
+      imagen.listaFavs.splice(index, 1);
+    }
+    this.modificarImagenFirebase(imagen);
   }
 
   async eliminarImagenFirebase(imagen: IImagen) {
@@ -139,7 +197,6 @@ export class ImagenesComponent implements OnInit {
 
   elegidaImagen(event: any) {
     this.imagenParaSubir = event.target.files[0];
-    console.log(this.imagenParaSubir);
   }
 
   async addImagen() {
@@ -155,7 +212,11 @@ export class ImagenesComponent implements OnInit {
       const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
       const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
       this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
+      this.imagen.emailPropietario = this.usuarioG.email;
+      this.imagen.avatarUsuario = this.usuarioG.photoURL;
       this.imagen.categoria = estaCategoria;
+      this.imagen.nombrePropietario = this.usuarioG.displayName;
+      // Título y descripción añadidos por ngModel
       await this.ImagenesService.addImagen(this.imagen);
       this.confirmationService.confirm({
         message: 'Imagen añadida correctamente',
@@ -163,8 +224,6 @@ export class ImagenesComponent implements OnInit {
         icon: 'pi pi-check',
       });
       // Resetear el producto
-      this.nuevoProducto.descripcion = '';
-      this.nuevoProducto.imagenURL = '';
       this.categoriaSeleccionada = '0';
     }
   }
@@ -174,8 +233,8 @@ export class ImagenesComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-  setFavorito(imagen: IImagen) {
-    imagen.favorito = !imagen.favorito;
+  async modificarUsuarioFirebase() {
+    await this.UsuariosService.updateUsuario(this.usuario);
   }
 }
 

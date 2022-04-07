@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { ImagenesService } from '../../services/productos.service';
 import { ICategoria } from '../../interfaces/categoria.interface';
@@ -6,7 +6,8 @@ import { ConfirmationService } from 'primeng/api';
 import { IImagen } from '../../interfaces/imagen.interface';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
-import "node_modules/sweetalert2/src/sweetalert2";
+import 'node_modules/sweetalert2/src/sweetalert2';
+import { Auth, User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-formulario',
@@ -15,19 +16,26 @@ import "node_modules/sweetalert2/src/sweetalert2";
 })
 export class FormularioComponent implements OnInit {
   @ViewChild('confirmarEliminar') deleteSwal!: SwalComponent;
-  @ViewChild('mensaje') mensajeSwal!: SwalComponent
+  @ViewChild('mensaje') mensajeSwal!: SwalComponent;
   //@ViewChild('modalFormulario') modalFormulario!: NgbModal;
   idCategoria: string = '';
+  usuarioG!: User;
   imagen: IImagen = {
+    id: '',
     titulo: '',
     categoria: '',
     descripcion: '',
     fecha: new Date(),
     contadorLikes: 0,
-    rutaImagen: '../../assets/img/18/nederotico.png',
-    like: false,
+    rutaImagen: '',
+    emailPropietario: '',
+    nombrePropietario: '',
+    avatarUsuario: '',
     favorito: false,
+    listaLikes: [],
+    listaFavs: [],
   };
+
   imagenes: IImagen[] = [];
   nombreCategoria: string = '';
   imagenParaSubir: any;
@@ -41,13 +49,13 @@ export class FormularioComponent implements OnInit {
   /* usuario!: User; */
   categoriaSeleccionada = '0';
   constructor(
-    /* private fireAuth: Auth,
-    private router: Router, */
+    private fireAuth: Auth,
     private ImagenesService: ImagenesService,
     private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
+    this.usuarioG = this.fireAuth.currentUser!;
     /*
     this.usuario = this.fireAuth.currentUser!;
     if (!this.usuario) {
@@ -66,13 +74,11 @@ export class FormularioComponent implements OnInit {
     );
   } */
 
-   eligeCategoria(categoria: ICategoria) {
+  eligeCategoria(categoria: ICategoria) {
     this.categorias.forEach((x) => (x.selected = false));
     categoria.selected = true;
-  this.categoriaSeleccionada = categoria.id;
- }
-
-
+    this.categoriaSeleccionada = categoria.id;
+  }
 
   /* getProductos(categoria: ICategoria) {
     this.idCategoria = categoria.id;
@@ -88,56 +94,49 @@ export class FormularioComponent implements OnInit {
     console.log(this.imagenParaSubir);
   }
 
-//  async addImagen() {
-//    let estaCategoria: string = '';
-//    this.categorias.forEach(function (x) {
-//      if (x.selected == true) estaCategoria = x.id;
-//    });
-//    console.log(estaCategoria);
-//    if (this.categoriaSeleccionada == '0') {
-//      alert('Tienes que elegir una categoría.');
-//    } else {
-//      const storage = getStorage();
-//      const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
-//      const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
- //     this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
- //     this.imagen.categoria = estaCategoria;
-//      await this.ImagenesService.addImagen(this.imagen);
-//      this.confirmationService.confirm({
-//        message: 'Imagen añadida correctamente',
-//        header: 'OK',
-//        icon: 'pi pi-check',
- //     });
+  //  async addImagen() {
+  //    let estaCategoria: string = '';
+  //    this.categorias.forEach(function (x) {
+  //      if (x.selected == true) estaCategoria = x.id;
+  //    });
+  //    console.log(estaCategoria);
+  //    if (this.categoriaSeleccionada == '0') {
+  //      alert('Tienes que elegir una categoría.');
+  //    } else {
+  //      const storage = getStorage();
+  //      const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
+  //      const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
+  //     this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
+  //     this.imagen.categoria = estaCategoria;
+  //      await this.ImagenesService.addImagen(this.imagen);
+  //      this.confirmationService.confirm({
+  //        message: 'Imagen añadida correctamente',
+  //        header: 'OK',
+  //        icon: 'pi pi-check',
+  //     });
 
-
-
-async addImagen() {
-  let estaCategoria: string = '';
-  this.categorias.forEach(function (x) {
-    if (x.selected == true) estaCategoria = x.id;
-  });
-      console.log(estaCategoria);
+  async addImagen() {
+    let estaCategoria: string = '';
+    this.categorias.forEach(function (x) {
+      if (x.selected == true) estaCategoria = x.id;
+    });
+    console.log(estaCategoria);
     if (this.categoriaSeleccionada == '0') {
-  Swal.fire({ text: 'Tienes que elegir una categoría.'});
-  } else {
-    const storage = getStorage();
-    const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
-    const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
-    this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
-    this.imagen.categoria = estaCategoria;
-    await this.ImagenesService.addImagen(this.imagen);
-    Swal.fire({ text: 'Imagen añadida correctamente'});
-    //this.confirmationService.confirm({
-    // message: 'Imagen añadida correctamente',
-    //  header: 'OK',
-    //  icon: 'pi pi-check',
-   // });
-
-
-
-
-
-
+      Swal.fire({ text: 'Tienes que elegir una categoría.' });
+    } else {
+      const storage = getStorage();
+      const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
+      const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
+      this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
+      this.imagen.categoria = estaCategoria;
+      this.imagen.avatarUsuario = this.usuarioG.photoURL;
+      await this.ImagenesService.addImagen(this.imagen);
+      Swal.fire({ text: 'Imagen añadida correctamente' });
+      //this.confirmationService.confirm({
+      // message: 'Imagen añadida correctamente',
+      //  header: 'OK',
+      //  icon: 'pi pi-check',
+      // });
 
       // Resetear el producto
       this.imagen.titulo = '';

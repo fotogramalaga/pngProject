@@ -20,14 +20,19 @@ export class FavoritosComponent implements OnInit {
   faCoffee = faCoffee;
   idCategoria: string = '';
   imagen: IImagen = {
+    id: '',
     titulo: '',
     categoria: '',
     descripcion: '',
     fecha: new Date(),
     contadorLikes: 0,
-    rutaImagen: '../../assets/img/18/nederotico.png',
-    like: false,
+    rutaImagen: '',
+    emailPropietario: '',
+    nombrePropietario: '',
+    avatarUsuario: '',
     favorito: false,
+    listaLikes: [],
+    listaFavs: [],
   };
   imagenes: IImagen[] = [];
   nombreCategoria: string = '';
@@ -44,7 +49,7 @@ export class FavoritosComponent implements OnInit {
     { id: '4', nombre: 'Deportes', selected: false },
     { id: '5', nombre: 'Mas18', selected: false },
   ];
-  usuario!: User;
+  usuarioG!: User;
   categoriaSeleccionada = '0';
   constructor(
     private fireAuth: Auth,
@@ -54,12 +59,13 @@ export class FavoritosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.usuario = this.fireAuth.currentUser!;
-    if (!this.usuario) {
+    this.usuarioG = this.fireAuth.currentUser!;
+    if (!this.usuarioG) {
       this.router.navigateByUrl('favoritos');
     }
     //this.getImagenes(this.categorias[0]);
     this.getTodasImagenes();
+    console.log(this.imagenes);
   }
 
   getImagenes(categoria?: ICategoria) {
@@ -73,17 +79,45 @@ export class FavoritosComponent implements OnInit {
   }
 
   getTodasImagenes() {
-    this.ImagenesService.getFavoritos().subscribe((imagenes: IImagen[]) => {
-      this.imagenes = imagenes;
-    });
+    this.ImagenesService.getFavoritos(this.usuarioG.uid).subscribe(
+      (imagenes: IImagen[]) => {
+        this.imagenes = imagenes;
+      }
+    );
   }
 
-  like(imagen: IImagen) {
-    if (imagen.like == false) {
+  getLike(imagen: IImagen) {
+    return imagen.listaLikes.includes(this.usuarioG.uid);
+  }
+
+  setLike(imagen: IImagen) {
+    if (!this.getLike(imagen)) {
       imagen.contadorLikes++;
-      imagen.like = true;
-      this.modificarImagenFirebase(imagen);
+      imagen.listaLikes.push(this.usuarioG.uid);
+    } else {
+      const index = imagen.listaLikes.indexOf(this.usuarioG.uid);
+      imagen.listaLikes.splice(index, 1);
+      imagen.contadorLikes--;
     }
+    console.log(imagen.listaLikes);
+    this.modificarImagenFirebase(imagen);
+    //this.modificarUsuarioFirebase();
+  }
+
+  getFav(imagen: IImagen) {
+    console.log(imagen);
+    return imagen.listaFavs.includes(this.usuarioG.uid);
+  }
+
+  setFav(imagen: IImagen) {
+    if (!this.getFav(imagen)) {
+      imagen.listaFavs.push(this.usuarioG.uid);
+    } else {
+      const index = imagen.listaFavs.indexOf(this.usuarioG.uid);
+      imagen.listaFavs.splice(index, 1);
+    }
+    this.modificarImagenFirebase(imagen);
+    console.log(imagen);
   }
 
   async eliminarImagenFirebase(imagen: IImagen) {

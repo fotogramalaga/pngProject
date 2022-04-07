@@ -7,31 +7,35 @@
 <div class="container">
   <div class="col-lg-12">
     <div class="text-center mb-5">
-      <h2>Galería de Imágenes</h2>
+      <h2>Galería de Imágenes Favoritas</h2>
     </div>
 
     <div *ngFor="let imagen of imagenes" class="row justify-content-center">
-      <mat-card class="card col-lg-4 col-md-6 col-xs-12" *ngIf="imagen.favorito">
+      <mat-card class="card col-lg-3 col-md-6 col-xs-12" *ngIf="getFav(imagen)">
         <mat-card-header>
-          <mat-card-title>{{imagen.titulo}}</mat-card-title>
+          <div mat-card-avatar class="example-header-image"
+            [style.background-image]="'url(' + imagen.avatarUsuario + ')'">
+          </div>
           <mat-card-subtitle>{{nombreCategoria}}</mat-card-subtitle>
         </mat-card-header><img mat-card-image class="img-fluid mx-0" [src]="imagen.rutaImagen"
           [alt]="imagen.descripcion">
         <mat-card-content>
+          <mat-card-title>{{imagen.titulo}}</mat-card-title>
           <p>{{imagen.descripcion}}
           </p>
         </mat-card-content>
         <mat-card-actions>
           <button mat-button class="icono">
-            <mat-icon [class.corazon]="imagen.favorito" (click)="setFavorito(imagen)">
+            <mat-icon [class.corazon]="getFav(imagen)" (click)="setFav(imagen)">
               favorite_border
             </mat-icon>
           </button>
-          <button mat-button class="icono" (click)="like(imagen)">
-            <mat-icon class="fa fa-thumbs-up">
+          <button mat-button class="icono" (click)="setLike(imagen)">
+            <mat-icon class="fa fa-thumbs-up" [class.like]="getLike(imagen)">
             </mat-icon>{{imagen.contadorLikes}}
           </button>
-          <button mat-button class="icono" (click)="eliminarImagenFirebase(imagen)">
+          <button *ngIf="imagen.emailPropietario === usuarioG.email" mat-button class="icono"
+            (click)="eliminarImagenFirebase(imagen)">
             <mat-icon class="fa fa-trash">
             </mat-icon>
           </button>
