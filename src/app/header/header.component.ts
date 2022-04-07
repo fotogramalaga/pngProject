@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   @ViewChild('confirmarEliminar') deleteSwal!: SwalComponent;
   @ViewChild('mensaje') mensajeSwal!: SwalComponent;
   @Output() getCategoria: EventEmitter<ICategoria> = new EventEmitter();
+
   categorias: ICategoria[] = [
     { id: '1', nombre: 'Arte', selected: true },
     { id: '2', nombre: 'Naturaleza', selected: false },
