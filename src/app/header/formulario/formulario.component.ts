@@ -63,6 +63,16 @@ export class FormularioComponent implements OnInit {
     }
     this.getImagenes(this.categorias[0]); */
   }
+  /*
+  getImagenes(categoria?: ICategoria) {
+    this.nombreCategoria = categoria?.nombre || '';
+    this.ImagenesService.getImagenes(categoria?.id).subscribe(
+      (imagenes: IImagen[]) => {
+        this.imagenes = imagenes;
+        //this.getProductos(this.categorias[0]);
+      }
+    );
+  } */
 
   eligeCategoria(categoria: ICategoria) {
     this.categorias.forEach((x) => (x.selected = false));
@@ -70,8 +80,18 @@ export class FormularioComponent implements OnInit {
     this.categoriaSeleccionada = categoria.id;
   }
 
+  /* getProductos(categoria: ICategoria) {
+    this.idCategoria = categoria.id;
+    this.ImagenesService
+      .getImagenes(this.idCategoria)
+      .subscribe((productos: IProducto[]) => {
+        this.productos = productos;
+      });
+  } */
+
   elegidaImagen(event: any) {
     this.imagenParaSubir = event.target.files[0];
+    console.log(this.imagenParaSubir);
   }
 
   async addImagen() {
@@ -79,8 +99,19 @@ export class FormularioComponent implements OnInit {
     this.categorias.forEach(function (x) {
       if (x.selected == true) estaCategoria = x.id;
     });
+    console.log(estaCategoria);
+    this.categorias.forEach(function (x) {
+      if (x.selected == true) estaCategoria = x.id;
+    });
+    console.log(estaCategoria);
     if (this.categoriaSeleccionada == '0') {
       Swal.fire({ text: 'Tienes que elegir una categoría.' });
+    } else if (this.imagen.titulo == '') {
+      Swal.fire({ text: 'Tienes que poner un título.' });
+    } else if (this.imagen.descripcion == '') {
+      Swal.fire({ text: 'Tienes que poner una descripción.' });
+    } else if (this.imagenParaSubir == '') {
+      Swal.fire({ text: 'Tienes que añadir una imagen.' });
     } else {
       const storage = getStorage();
       const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
@@ -92,11 +123,7 @@ export class FormularioComponent implements OnInit {
       this.imagen.nombrePropietario = this.usuarioG.displayName;
       // Título y descripción añadidos por ngModel
       await this.ImagenesService.addImagen(this.imagen);
-      this.confirmationService.confirm({
-        message: 'Imagen añadida correctamente',
-        header: 'OK',
-        icon: 'pi pi-check',
-      });
+      Swal.fire({ text: 'Imagen añadida con éxito' });
 
       // Resetear el producto
       this.imagen.titulo = '';
