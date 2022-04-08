@@ -34,10 +34,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth, User } from '@angular/fire/auth';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { ImagenesService } from '../services/productos.service';
-import { UsuariosService } from '../services/usuario.service';
+import { ImagenesService } from '../services/imagenes.service';
 import { ICategoria } from '../interfaces/categoria.interface';
-import { IUsuario } from '../interfaces/usuario.interface';
 import { ConfirmationService } from 'primeng/api';
 import { IImagen } from '../interfaces/imagen.interface';
 import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons';
@@ -48,18 +46,7 @@ import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./imagenes.component.css'],
 })
 export class ImagenesComponent implements OnInit {
-  faCoffee = faCoffee;
   idCategoria: string = '';
-  pagImagenes = 'imagenes';
-  usuario: IUsuario = {
-    id: '',
-    nombre: '',
-    email: '',
-    favoritas: [],
-    likes: [],
-    subidas: [],
-  };
-
   imagen: IImagen = {
     id: '',
     titulo: '',
@@ -76,7 +63,6 @@ export class ImagenesComponent implements OnInit {
     listaFavs: [],
   };
   imagenes: IImagen[] = [];
-  usuarios: IUsuario[] = [];
   nombreCategoria: string = '';
   imagenParaSubir: any;
   categorias: ICategoria[] = [
@@ -92,7 +78,6 @@ export class ImagenesComponent implements OnInit {
     private fireAuth: Auth,
     public router: Router,
     private ImagenesService: ImagenesService,
-    private UsuariosService: UsuariosService,
     private confirmationService: ConfirmationService
   ) {}
 
@@ -108,27 +93,6 @@ export class ImagenesComponent implements OnInit {
   getCategoria(imagen: IImagen) {
     console.log(this.categorias[parseInt(imagen.categoria) - 1].nombre);
     return this.categorias[parseInt(imagen.categoria) - 1].nombre;
-  }
-
-  getUsuario() {
-    let usuarioRegistrado = false;
-    this.UsuariosService.getUsuarios().subscribe((usuarios: IUsuario[]) => {
-      this.usuarios = usuarios;
-    });
-    console.log(this.usuarios);
-    this.usuarios.forEach((usuario) => {
-      console.log(usuario);
-      if (usuario.email == this.usuarioG.email) usuarioRegistrado = true;
-    });
-    if (!usuarioRegistrado) {
-      this.usuario.email = this.usuarioG.email;
-      this.usuario.nombre = this.usuarioG.displayName;
-      this.addUsuario();
-    }
-  }
-
-  async addUsuario() {
-    await this.UsuariosService.addUsuario(this.usuario);
   }
 
   getImagenes(categoria?: ICategoria) {
@@ -174,15 +138,9 @@ export class ImagenesComponent implements OnInit {
 
   async eliminarImagenFirebase(imagen: IImagen) {
     await this.ImagenesService.deleteImagen(imagen);
-    /* this.mensajeSwal.text = this.cliente.nombre + ' ha sido eliminado';
-    this.mensajeSwal.fire();
-    // Al eliminar, ponemos en blanco el formulario
-    this.agregarCliente(); */
   }
   async modificarImagenFirebase(imagen: IImagen) {
     await this.ImagenesService.updateImagen(imagen);
-    /* this.mensajeSwal.text = this.cliente.nombre + ' ha sido modificado';
-    this.mensajeSwal.fire(); */
   }
 
   eligeCategoria(categoria: ICategoria) {
@@ -229,13 +187,4 @@ export class ImagenesComponent implements OnInit {
     this.fireAuth.signOut();
     this.router.navigateByUrl('/login');
   }
-
-  async modificarUsuarioFirebase() {
-    await this.UsuariosService.updateUsuario(this.usuario);
-  }
 }
-
-/* public saveCode(e): void {
-  let find = this.codeList.find(x => x?.name === e.target.value);
-  console.log(find?.id);
-} */

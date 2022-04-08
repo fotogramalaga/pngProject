@@ -43,7 +43,11 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.fireAuth.signOut();
-    this.router.navigateByUrl('/login');
+    Swal.fire({
+      icon: 'warning',
+      text: 'Te has deslogueado de pngProject. ¡Hasta pronto!',
+    });
+    this.router.navigateByUrl('/home');
   }
   addNewImage() {
     const dialogRef = this.dialog.open(FormularioComponent);

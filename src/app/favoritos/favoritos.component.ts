@@ -4,8 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth, User } from '@angular/fire/auth';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { IProducto } from '../interfaces/producto.interface';
-import { ImagenesService } from '../services/productos.service';
+import { ImagenesService } from '../services/imagenes.service';
 import { ICategoria } from '../interfaces/categoria.interface';
 import { ConfirmationService } from 'primeng/api';
 import { IImagen } from '../interfaces/imagen.interface';
@@ -36,11 +35,6 @@ export class FavoritosComponent implements OnInit {
   };
   imagenes: IImagen[] = [];
   nombreCategoria: string = '';
-  nuevoProducto: IProducto = {
-    descripcion: '',
-    imagenURL: '',
-    idCategoria: '',
-  };
   imagenParaSubir: any;
   categorias: ICategoria[] = [
     { id: '1', nombre: 'Arte', selected: true },
@@ -122,15 +116,9 @@ export class FavoritosComponent implements OnInit {
 
   async eliminarImagenFirebase(imagen: IImagen) {
     await this.ImagenesService.deleteImagen(imagen);
-    /* this.mensajeSwal.text = this.cliente.nombre + ' ha sido eliminado';
-    this.mensajeSwal.fire();
-    // Al eliminar, ponemos en blanco el formulario
-    this.agregarCliente(); */
   }
   async modificarImagenFirebase(imagen: IImagen) {
     await this.ImagenesService.updateImagen(imagen);
-    /* this.mensajeSwal.text = this.cliente.nombre + ' ha sido modificado';
-    this.mensajeSwal.fire(); */
   }
 
   eligeCategoria(categoria: ICategoria) {
@@ -138,15 +126,6 @@ export class FavoritosComponent implements OnInit {
     categoria.selected = true;
     this.categoriaSeleccionada = categoria.id;
   }
-
-  /* getProductos(categoria: ICategoria) {
-    this.idCategoria = categoria.id;
-    this.ImagenesService
-      .getImagenes(this.idCategoria)
-      .subscribe((productos: IProducto[]) => {
-        this.productos = productos;
-      });
-  } */
 
   elegidaImagen(event: any) {
     this.imagenParaSubir = event.target.files[0];
@@ -174,8 +153,6 @@ export class FavoritosComponent implements OnInit {
         icon: 'pi pi-check',
       });
       // Resetear el producto
-      this.nuevoProducto.descripcion = '';
-      this.nuevoProducto.imagenURL = '';
       this.categoriaSeleccionada = '0';
     }
   }

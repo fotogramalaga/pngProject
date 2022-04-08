@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { ImagenesService } from '../../services/productos.service';
+import { ImagenesService } from '../../services/imagenes.service';
 import { ICategoria } from '../../interfaces/categoria.interface';
 import { ConfirmationService } from 'primeng/api';
 import { IImagen } from '../../interfaces/imagen.interface';
@@ -56,38 +56,13 @@ export class FormularioComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioG = this.fireAuth.currentUser!;
-    /*
-    this.usuario = this.fireAuth.currentUser!;
-    if (!this.usuario) {
-      this.router.navigateByUrl('imagenes');
-    }
-    this.getImagenes(this.categorias[0]); */
   }
-  /*
-  getImagenes(categoria?: ICategoria) {
-    this.nombreCategoria = categoria?.nombre || '';
-    this.ImagenesService.getImagenes(categoria?.id).subscribe(
-      (imagenes: IImagen[]) => {
-        this.imagenes = imagenes;
-        //this.getProductos(this.categorias[0]);
-      }
-    );
-  } */
 
   eligeCategoria(categoria: ICategoria) {
     this.categorias.forEach((x) => (x.selected = false));
     categoria.selected = true;
     this.categoriaSeleccionada = categoria.id;
   }
-
-  /* getProductos(categoria: ICategoria) {
-    this.idCategoria = categoria.id;
-    this.ImagenesService
-      .getImagenes(this.idCategoria)
-      .subscribe((productos: IProducto[]) => {
-        this.productos = productos;
-      });
-  } */
 
   elegidaImagen(event: any) {
     this.imagenParaSubir = event.target.files[0];
