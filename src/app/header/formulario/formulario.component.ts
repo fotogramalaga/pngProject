@@ -79,7 +79,6 @@ export class FormularioComponent implements OnInit {
     this.categorias.forEach(function (x) {
       if (x.selected == true) estaCategoria = x.id;
     });
-    console.log(estaCategoria);
     if (this.categoriaSeleccionada == '0') {
       Swal.fire({ text: 'Tienes que elegir una categoría.' });
     } else {
