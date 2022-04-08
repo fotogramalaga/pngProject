@@ -13,7 +13,6 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'imagenes', component: ImagenesComponent },
   { path: 'favoritos', component: FavoritosComponent },
-  { path: 'footer', component: FooterComponent },
   { path: '**', component: ErrorComponent },
 ];
 
