@@ -124,3 +124,26 @@ mat-card.card {
 .like {
   color: #003DA5;
 }
+
+.objetfit>img {
+  width: 200px;
+  height: 200px;
+  object-fit: none;
+  background-color: black;
+  border: 1px solid #ff9daa;
+}
+
+.objetfit>img:hover {
+  width: auto;
+  height: auto;
+  object-fit: initial;
+}
+
+.blur {
+  filter: blur(6px);
+}
+
+.blur:hover {
+  transition: 500ms all;
+  filter: none;
+}
