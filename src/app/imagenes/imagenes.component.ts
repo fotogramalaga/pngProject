@@ -105,6 +105,11 @@ export class ImagenesComponent implements OnInit {
     //this.getUsuario();
   }
 
+  getCategoria(imagen: IImagen) {
+    console.log(this.categorias[parseInt(imagen.categoria) - 1].nombre);
+    return this.categorias[parseInt(imagen.categoria) - 1].nombre;
+  }
+
   getUsuario() {
     let usuarioRegistrado = false;
     this.UsuariosService.getUsuarios().subscribe((usuarios: IUsuario[]) => {
@@ -186,15 +191,6 @@ export class ImagenesComponent implements OnInit {
     this.categoriaSeleccionada = categoria.id;
   }
 
-  /* getProductos(categoria: ICategoria) {
-    this.idCategoria = categoria.id;
-    this.ImagenesService
-      .getImagenes(this.idCategoria)
-      .subscribe((productos: IProducto[]) => {
-        this.productos = productos;
-      });
-  } */
-
   elegidaImagen(event: any) {
     this.imagenParaSubir = event.target.files[0];
   }
@@ -204,7 +200,6 @@ export class ImagenesComponent implements OnInit {
     this.categorias.forEach(function (x) {
       if (x.selected == true) estaCategoria = x.id;
     });
-    console.log(estaCategoria);
     if (this.categoriaSeleccionada == '0') {
       alert('Tienes que elegir una categoría.');
     } else {
@@ -216,6 +211,7 @@ export class ImagenesComponent implements OnInit {
       this.imagen.avatarUsuario = this.usuarioG.photoURL;
       this.imagen.categoria = estaCategoria;
       this.imagen.nombrePropietario = this.usuarioG.displayName;
+      this.imagen.fecha = new Date(Date.now());
       // Título y descripción añadidos por ngModel
       await this.ImagenesService.addImagen(this.imagen);
       this.confirmationService.confirm({
@@ -225,6 +221,7 @@ export class ImagenesComponent implements OnInit {
       });
       // Resetear el producto
       this.categoriaSeleccionada = '0';
+      console.log('imagenes');
     }
   }
 

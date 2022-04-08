@@ -7,22 +7,22 @@
       <h1>Bienvenido {{ usuarioG?.displayName }} </h1>
       <h2>Galería de Imágenes</h2>
     </div>
-    <div *ngIf="this.router.url === 'imagenes'"></div>
     <div class="row justify-content-center">
       <mat-card class="card col-lg-3 col-md-6 col-xs-12" *ngFor="let imagen of imagenes">
-        <mat-card-header>
+        <mat-card-header class="align-content-center">
           <div mat-card-avatar class="example-header-image"
             [style.background-image]="'url(' + imagen.avatarUsuario + ')'">
           </div>
-          <mat-card-subtitle>{{nombreCategoria}}</mat-card-subtitle>
-        </mat-card-header><img mat-card-image class="img-fluid mx-0" [src]="imagen.rutaImagen"
-          [alt]="imagen.descripcion">
-        <mat-card-content>
           <mat-card-title>{{imagen.titulo}}</mat-card-title>
-          <p>{{imagen.descripcion}}
-          </p>
+          <mat-card-subtitle>{{usuarioG.displayName}}</mat-card-subtitle>
+        </mat-card-header>
+        <div class="objetfit d-flex justify-content-center"><img mat-card-image class="img-fluid"
+            [src]="imagen.rutaImagen" [alt]="imagen.descripcion" [class.blur]='getCategoria(imagen) === "Mas18"' />
+        </div>
+        <mat-card-content>
+          <mat-card-title>{{imagen.descripcion}}</mat-card-title>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions class="d-flex justify-content-around">
           <button mat-button class="icono">
             <mat-icon [class.corazon]="getFav(imagen)" (click)="setFav(imagen)">
               favorite_border
@@ -38,6 +38,11 @@
             </mat-icon>
           </button>
         </mat-card-actions>
+        <mat-divider inset></mat-divider>
+        <mat-card-footer class="d-flex justify-content-around">
+          <p>{{getCategoria(imagen)}}</p>
+          <p *ngIf="imagen.fecha">{{imagen.fecha.seconds * 1000 | date:'dd/MM/yyyy HH:mm'}}</p>
+        </mat-card-footer>
       </mat-card>
     </div>
   </div>

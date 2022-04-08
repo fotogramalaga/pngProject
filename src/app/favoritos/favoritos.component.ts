@@ -179,6 +179,9 @@ export class FavoritosComponent implements OnInit {
       this.categoriaSeleccionada = '0';
     }
   }
+  getCategoria(imagen: IImagen) {
+    return this.categorias[parseInt(imagen.categoria) - 1].nombre;
+  }
 
   logout() {
     this.fireAuth.signOut();
