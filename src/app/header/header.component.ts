@@ -13,6 +13,7 @@ import { ICategoria } from '../interfaces/categoria.interface';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import 'node_modules/sweetalert2/src/sweetalert2';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -32,6 +33,7 @@ export class HeaderComponent implements OnInit {
     { id: '5', nombre: 'Mayor 18', selected: false },
   ];
   constructor(
+    private scroller: ViewportScroller,
     private fireAuth: Auth,
     private router: Router,
     public dialog: MatDialog
@@ -75,5 +77,9 @@ export class HeaderComponent implements OnInit {
         }
       });
     }
+  }
+
+  scrollToFooter() {
+    this.scroller.scrollToAnchor('footer');
   }
 }
