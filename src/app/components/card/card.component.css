@@ -1,0 +1,46 @@
+mat-card.card:hover {
+  transform: scale(1.1);
+  transition: 200ms all;
+  box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
+}
+
+/*Para cuando salimos de la tarjeta, se anime al contrario*/
+mat-card.card {
+  transition: 200ms all;
+  margin: .85em;
+}
+
+.corazon {
+  background-color: white;
+  transition: 200ms all;
+  color: crimson;
+}
+
+.like {
+  transition: 400ms;
+  color: #003DA5;
+}
+
+.objetfit>img {
+  width: 200px;
+  height: 200px;
+  object-fit: none;
+  background-color: black;
+  border: 1px solid #ff9daa;
+}
+
+.objetfit>img:hover {
+  width: auto;
+  height: auto;
+  object-fit: initial;
+  transition: 500ms;
+}
+
+.blur {
+  filter: blur(6px);
+}
+
+.blur:hover {
+  transition: 500ms all;
+  filter: none;
+}

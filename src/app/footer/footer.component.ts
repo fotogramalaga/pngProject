@@ -23,7 +23,7 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {}
 
   goToHeader() {
-    this.scroller.scrollToAnchor('header');
+    window.scrollTo(0, 0);
   }
 }
 

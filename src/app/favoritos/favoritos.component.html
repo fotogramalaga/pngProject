@@ -10,7 +10,8 @@
       <h2>Galería de Imágenes Favoritas</h2>
     </div>
 
-    <div *ngFor="let imagen of imagenes" class="row justify-content-center">
+    <app-card [imagenes]="imagenes" [favoritos]="true"></app-card>
+    <!--  <div *ngFor="let imagen of imagenes" class="row justify-content-center">
       <mat-card class="card col-lg-3 col-md-6 col-xs-12" *ngIf="getFav(imagen)">
         <mat-card-header class="align-content-center">
           <div mat-card-avatar class="example-header-image"
@@ -46,7 +47,7 @@
           <p *ngIf="imagen.fecha">{{imagen.fecha.seconds * 1000 | date:'dd/MM/yyyy HH:mm'}}</p>
         </mat-card-footer>
       </mat-card>
-    </div>
+    </div> -->
   </div>
 </div>
 

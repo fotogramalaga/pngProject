@@ -12,17 +12,6 @@
 <mat-dialog-content class="mat-typography">
 
   <form #f="ngForm">
-    <!-- <button mat-button mat-dialog-close></button> -->
-    <!-- <div class="form-floating">
-      <label for="floatingTextarea2">Título</label>
-      <input type="text" class="form-control" name="titulo" [(ngModel)]="imagen.titulo" required
-        [class.error]="f.controls['titulo']?.invalid && f.controls['titulo']?.touched" minlength="5"
-        placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" />
-      <p class="error-mensaje text-danger mt-1 ml-4"
-        *ngIf="f.controls['titulo']?.invalid && f.controls['titulo']?.touched">
-        Título obligatorio
-      </p>
-    </div> -->
     <div class="parent">
       <p>
         <mat-form-field appearance="fill">
@@ -36,9 +25,6 @@
         <mat-label>Textarea</mat-label>
         <textarea matInput name="imagen.descripcion" [(ngModel)]="imagen.descripcion" required></textarea>
       </mat-form-field>
-      <!-- <label for="descripcion" class="block text-900 font-medium mb-2">Descripción</label>
-    <textarea id="descripcion" type="text" pInputText class="w-full mb-3" name="descripcion" maxlength="50" required
-      [(ngModel)]="imagen.descripcion"></textarea> -->
       <br>
 
       <label for="inputCategorias">Categorías</label>

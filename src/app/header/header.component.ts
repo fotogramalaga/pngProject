@@ -53,10 +53,6 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(FormularioComponent);
   }
 
-  changePag(imagenes: boolean) {
-    imagenes = !imagenes;
-  }
-
   getImagenes(categoria: ICategoria) {
     if (categoria.id != '5') {
       this.getCategoria.emit(categoria);

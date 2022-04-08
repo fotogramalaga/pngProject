@@ -8,7 +8,8 @@
       <h2>Galería de Imágenes</h2>
     </div>
     <div class="row justify-content-center">
-      <mat-card class="card col-lg-3 col-md-6 col-xs-12" *ngFor="let imagen of imagenes">
+      <app-card [imagenes]="imagenes" [favoritos]="false"></app-card>
+      <!-- <mat-card class="card col-lg-3 col-md-6 col-xs-12" *ngFor="let imagen of imagenes">
         <mat-card-header class="align-content-center">
           <div mat-card-avatar class="example-header-image"
             [style.background-image]="'url(' + imagen.avatarUsuario + ')'">
@@ -43,7 +44,7 @@
           <p>{{getCategoria(imagen)}}</p>
           <p *ngIf="imagen.fecha">{{imagen.fecha.seconds * 1000 | date:'dd/MM/yyyy HH:mm'}}</p>
         </mat-card-footer>
-      </mat-card>
+      </mat-card> -->
     </div>
   </div>
 </div>

@@ -84,7 +84,7 @@ footer .footer-cat,
   position: relative;
 }
 
-.footer-cat-links.active > li a {
+.footer-cat-links.active>li a {
   pointer-events: auto;
 }
 
@@ -107,6 +107,7 @@ footer .footer-cat,
   width: 100%;
   left: 0;
 }
+
 .col-3 {
   display: inline-table;
   width: 25%;
@@ -188,6 +189,14 @@ footer .footer-cat,
   color: #fff;
 }
 
+.arribaPag {
+  font-size: 2em;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+}
+
 /* iPads to Smartphone for Common Elements ----------- */
 @media only screen and (max-width: 1024px) {
   .col-3 {
@@ -248,7 +257,7 @@ footer .footer-cat,
     opacity: 0;
   }
 
-  .footer-cat-links.active > li {
+  .footer-cat-links.active>li {
     line-height: 2;
     opacity: 1;
   }
@@ -361,6 +370,7 @@ footer .footer-cat,
   height: 150px;
   margin-top: 10px;
 }
+
 #iconolocalizacion {
   width: 1px;
   height: 1px;

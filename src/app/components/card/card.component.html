@@ -1,0 +1,36 @@
+<div *ngFor="let imagen of imagenes" class="row justify-content-center">
+  <mat-card class="card col-lg-3 col-md-6 col-xs-12" *ngIf="getFav(imagen)">
+    <mat-card-header class="align-content-center">
+      <div mat-card-avatar class="example-header-image" [style.background-image]="'url(' + imagen.avatarUsuario + ')'">
+      </div>
+      <mat-card-title>{{imagen.titulo}}</mat-card-title>
+      <mat-card-subtitle>{{usuarioG.displayName}}</mat-card-subtitle>
+    </mat-card-header>
+    <div class="objetfit d-flex justify-content-center"><img mat-card-image class="img-fluid" [src]="imagen.rutaImagen"
+        [class.blur]='getCategoria(imagen) === "Mas18"' [alt]="imagen.descripcion" /></div>
+    <mat-card-content>
+      <mat-card-title>{{imagen.descripcion}}</mat-card-title>
+    </mat-card-content>
+    <mat-card-actions class="d-flex justify-content-around">
+      <button mat-button class="icono">
+        <mat-icon [class.corazon]="getFav(imagen)" (click)="setFav(imagen)">
+          favorite_border
+        </mat-icon>
+      </button>
+      <button mat-button class="icono" (click)="setLike(imagen)">
+        <mat-icon class="fa fa-thumbs-up" [class.like]="getLike(imagen)">
+        </mat-icon>{{imagen.contadorLikes}}
+      </button>
+      <button *ngIf="imagen.emailPropietario === usuarioG.email" mat-button class="icono"
+        (click)="eliminarImagenFirebase(imagen)">
+        <mat-icon class="fa fa-trash">
+        </mat-icon>
+      </button>
+    </mat-card-actions>
+    <mat-divider inset></mat-divider>
+    <mat-card-footer class="d-flex justify-content-around">
+      <p>{{getCategoria(imagen)}}</p>
+      <p *ngIf="imagen.fecha">{{imagen.fecha.seconds * 1000 | date:'dd/MM/yyyy HH:mm'}}</p>
+    </mat-card-footer>
+  </mat-card>
+</div>

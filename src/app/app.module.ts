@@ -40,6 +40,8 @@ import { FormularioComponent } from './header/formulario/formulario.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { CardComponent } from './components/card/card.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -54,6 +56,7 @@ registerLocaleData(localeEs, 'es');
     FooterComponent,
     HeaderComponent,
     FormularioComponent,
+    CardComponent,
   ],
   imports: [
     FontAwesomeModule,
@@ -80,6 +83,12 @@ registerLocaleData(localeEs, 'es');
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     provideStorage(() => getStorage()),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [ConfirmationService, { provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent],
