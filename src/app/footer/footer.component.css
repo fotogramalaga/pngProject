@@ -881,3 +881,10 @@ li i {
   height: 150px;
   margin-top: 10px;
 }
+.arribaPag {
+  font-size: 4em;
+  position: fixed;
+  bottom: 10px;
+  cursor: pointer;
+  right: 10px;
+}
