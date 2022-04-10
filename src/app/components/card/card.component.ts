@@ -48,13 +48,13 @@ export class CardComponent implements OnInit {
     //this.modificarUsuarioFirebase();
   }
 
+  getAllFav(imagen: IImagen) {
+    if (this.favoritos) return imagen.listaFavs.includes(this.usuarioG.uid);
+    else return true;
+  }
+
   getFav(imagen: IImagen) {
-    console.log(imagen);
-    if (this.favoritos) {
-      return imagen.listaFavs.includes(this.usuarioG.uid);
-    } else {
-      return true;
-    }
+    return imagen.listaFavs.includes(this.usuarioG.uid);
   }
 
   setFav(imagen: IImagen) {
