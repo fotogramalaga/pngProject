@@ -197,7 +197,7 @@ footer .footer-cat,
   cursor: pointer;
 }
 
-/* iPads to Smartphone for Common Elements ----------- 
+/* iPads to Smartphone for Common Elements -----------
 @media only screen and (max-width: 1024px) {
   .col-3 {
     display: block;
@@ -303,7 +303,7 @@ footer .footer-cat,
   }
 }
 
-/* iPads (portrait)----------- 
+/* iPads (portrait)-----------
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
   footer {
     padding-right: 3em;
@@ -317,7 +317,7 @@ footer .footer-cat,
   }
 }
 
-/* iPads (landscape) ----------- 
+/* iPads (landscape) -----------
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   section {
     padding-bottom: 3em;
@@ -334,7 +334,7 @@ footer .footer-cat,
   }
 }
 
-/* Mini Tablet ----------- 
+/* Mini Tablet -----------
 @media only screen and (max-width: 600px) {
   .col-3 {
     display: block;
@@ -352,7 +352,7 @@ footer .footer-cat,
   }
 }
 
-/* Smartphones (portrait and landscape) ----------- 
+/* Smartphones (portrait and landscape) -----------
 @media only screen and (max-width: 480px) {
   .col-6 {
     width: 100%;
@@ -570,7 +570,7 @@ footer .footer-cat,
   color: #000;
 }
 
-/* iPads to Smartphone for Common Elements ----------- 
+/* iPads to Smartphone for Common Elements -----------
 @media only screen and (max-width: 1024px) {
   .col-3 {
     display: block;
@@ -676,7 +676,7 @@ footer .footer-cat,
   }
 }
 
-/* iPads (portrait)----------- 
+/* iPads (portrait)-----------
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
   footer {
     padding-right: 3em;
@@ -690,7 +690,7 @@ footer .footer-cat,
   }
 }
 
-/* iPads (landscape) ----------- 
+/* iPads (landscape) -----------
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   section {
     padding-bottom: 3em;
@@ -707,7 +707,7 @@ footer .footer-cat,
   }
 }
 
-/* Mini Tablet ----------- 
+/* Mini Tablet -----------
 @media only screen and (max-width: 600px) {
   .col-3 {
     display: block;
@@ -725,7 +725,7 @@ footer .footer-cat,
   }
 }
 
-/* Smartphones (portrait and landscape) ----------- 
+/* Smartphones (portrait and landscape) -----------
 @media only screen and (max-width: 480px) {
   .col-6 {
     width: 100%;
@@ -865,7 +865,7 @@ li i {
 
 @media screen and (max-width: 1275px) {
   .footer-items {
-    width: 50%;
+    width: 30%;
   }
 }
 
@@ -876,6 +876,7 @@ li i {
     width: 100%;
   }
 }
+
 #logo {
   width: 150px;
   height: 150px;
