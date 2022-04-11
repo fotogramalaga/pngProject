@@ -72,6 +72,7 @@ export class HeaderComponent implements OnInit {
   getImagenes(categoria: ICategoria) {
     if (categoria.id != '5') {
       this.getCategoria.emit(categoria);
+      this.goTo('/imagenes');
     } else {
       Swal.fire({
         title: 'Confirma si eres mayor de 18 años',

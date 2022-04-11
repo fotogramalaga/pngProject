@@ -1,9 +1,11 @@
 #logoHome {
   width: 4em;
 }
+
 #logoHeader {
   width: 4em;
   margin-left: 2em;
+  padding: 0.2em;
 }
 
 * {
@@ -21,7 +23,8 @@
   left: 0;
   margin: 20px auto;
   max-width: 90%;
-  position: absolute; /*Sirve para darle el tamaño al menu y el posicionamiento*/
+  position: absolute;
+  /*Sirve para darle el tamaño al menu y el posicionamiento*/
   right: 0;
   top: -20px;
   width: 90%;
@@ -31,25 +34,27 @@
   list-style: none;
 }
 
-.nav > .ul {
-  background-color: #89b4f5; /*Le da el fondo al menu*/
+.nav>.ul {
+  background-color: #89b4f5;
+  /*Le da el fondo al menu*/
   display: table;
   position: relative;
   width: 100%;
 }
 
-.nav > .ul .li {
+.nav>.ul .li {
   display: table-cell;
 }
 
 /*Sub-menu*/
-.nav > .ul > .li:hover > .ul {
+.nav>.ul>.li:hover>.ul {
   display: block;
   height: 100%;
 }
 
-.nav > .ul > .li > .ul {
-  background-color: rgb(179, 228, 242); /*Le da el fondo al submenu*/
+.nav>.ul>.li>.ul {
+  background-color: rgb(179, 228, 242);
+  /*Le da el fondo al submenu*/
   display: block;
   height: 0%;
   left: 0;
@@ -60,7 +65,7 @@
   box-shadow: 0px 2px #000000;
 }
 
-.nav > .ul .li .links {
+.nav>.ul .li .links {
   color: #000000;
   display: block;
   line-height: 20px;
@@ -73,12 +78,13 @@
   box-shadow: 0px 2px rgb(179, 228, 242);
 }
 
-.nav > .ul > .li > .ul > .li .links:hover {
-  background-color: #89b4f5; /*Le da el fondo en el submenu cuando se hace el hover */
+.nav>.ul>.li>.ul>.li .links:hover {
+  background-color: #89b4f5;
+  /*Le da el fondo en el submenu cuando se hace el hover */
   box-shadow: 0px 2px #a4f5be;
 }
 
-.nav > .ul > .li > .links .span {
+.nav>.ul>.li>.links .span {
   background-color: rgb(179, 228, 242);
   display: block;
   height: 100%;
@@ -89,13 +95,14 @@
   width: 100%;
 }
 
-.nav > .ul > .li > .links .span .icon {
+.nav>.ul>.li>.links .span .icon {
   display: block;
   line-height: 60px;
 }
 
-.nav > .ul > .li > .links:hover > .span {
-  top: 0; /*Es el que hace que bajen los iconos al hacerle hover al texto*/
+.nav>.ul>.li>.links:hover>.span {
+  top: 0;
+  /*Es el que hace que bajen los iconos al hacerle hover al texto*/
 }
 
 /*Colores*/
