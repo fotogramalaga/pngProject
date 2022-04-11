@@ -57,6 +57,18 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(FormularioComponent);
   }
 
+  alertLogout() {
+    Swal.fire({
+      icon: 'error',
+      title: 'No estás logueado/a. Inicia sesión para acceder a este contenido',
+    });
+    // return '/home';
+  }
+
+  goTo(ruta: string) {
+    this.router.navigateByUrl(ruta);
+  }
+
   getImagenes(categoria: ICategoria) {
     if (categoria.id != '5') {
       this.getCategoria.emit(categoria);

@@ -12,7 +12,8 @@
         </a>
       </li>
       <li class="li">
-        <a routerLink="/imagenes" class="links" title="Para ir a la página de inicio pincha en este enlace">
+        <a (click)="usuarioG!==null ? goTo('/imagenes') : alertLogout()" class="links"
+          title="Para ir a la página de inicio pincha en este enlace">
           <span class="span fourth">
             <i class="icon fa fa-home" aria-hidden="true"></i> </span>Home
         </a>
@@ -27,21 +28,22 @@
 
         <ul class="ul">
           <li class="li" *ngFor="let categoria of categorias">
-            <a class="links" (click)="getImagenes(categoria)">{{
+            <a class="links" (click)="usuarioG!==null ? getImagenes(categoria) : alertLogout()">{{
               categoria.nombre
             }}</a>
           </li>
         </ul>
       </li>
       <li class="li">
-        <a routerLink="/favoritos" class="links"
+        <a (click)="usuarioG!==null ? goTo('/favoritos') : alertLogout()" class="links"
           title="Para ver la página de tus imágenes favoritas pincha en este enlace">
           <span class="span fourth">
             <i class="icon fa fa-star" aria-hidden="true"></i> </span>Favoritos
         </a>
       </li>
-      <li class="li" (click)="addNewImage()">
-        <a href="javascript:void(0);" class="links" title="Para añadir tus propias imágenes pincha en este enlace">
+      <li class="li">
+        <a (click)="usuarioG!==null ? addNewImage() : alertLogout()" class="links"
+          title="Para añadir tus propias imágenes pincha en este enlace">
           <span class="span fourth">
             <i class="icon fa fa-upload" aria-hidden="true"></i> </span>Añadir Imágenes
         </a>
