@@ -758,7 +758,7 @@ footer .footer-cat,
   background: #5394f5;
   display: block;
   font-size: 17px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
 }
 
