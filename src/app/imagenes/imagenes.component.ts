@@ -87,7 +87,6 @@ export class ImagenesComponent implements OnInit {
       this.router.navigateByUrl('imagenes');
     }
     this.getImagenes(this.categorias[0]);
-    //this.getUsuario();
   }
 
   getCategoria(imagen: IImagen) {

@@ -1,7 +1,7 @@
 <header class="menu sticky-top" id="header">
   <nav class="nav">
     <ul class="ul">
-      <li class="li">
+      <li class="li" [class.d-none]="usuarioG!==null">
         <a routerLink="/login" class="links"
           title="Para entrar en la aplicación y poder hacer uso de ella pincha en este enlace para iniciar sesión">
           <span class="span first">
@@ -52,7 +52,7 @@
       </li>
 
       <li class="li">
-        <a href="javascript:void(0);" (click)="logout()" class="links"
+        <a href="javascript:void(0);" (click)="logout()" class="links" [class.d-none]="usuarioG===null"
           title="Para cerrar sesión en la aplicación pincha en este enlace">
           <span class="span first">
             <i class="icon fa fa-power-off" aria-hidden="true"></i> </span>Logout

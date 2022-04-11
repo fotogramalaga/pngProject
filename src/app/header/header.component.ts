@@ -5,7 +5,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
+import { Auth, User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from './formulario/formulario.component';
@@ -25,6 +25,8 @@ export class HeaderComponent implements OnInit {
   @ViewChild('mensaje') mensajeSwal!: SwalComponent;
   @Output() getCategoria: EventEmitter<ICategoria> = new EventEmitter();
 
+  usuarioG!: User;
+
   categorias: ICategoria[] = [
     { id: '1', nombre: 'Arte', selected: true },
     { id: '2', nombre: 'Naturaleza', selected: false },
@@ -39,7 +41,9 @@ export class HeaderComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.usuarioG = this.fireAuth.currentUser!;
+  }
 
   logout() {
     this.fireAuth.signOut();
