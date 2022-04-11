@@ -44,3 +44,7 @@ mat-card.card {
   transition: 500ms all;
   filter: none;
 }
+
+.example-header-image {
+  background-size: cover;
+}
