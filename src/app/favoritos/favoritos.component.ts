@@ -1,5 +1,3 @@
-/* TYPESCRIPT JUAN LUIS */
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth, User } from '@angular/fire/auth';
@@ -38,10 +36,10 @@ export class FavoritosComponent implements OnInit {
   imagenParaSubir: any;
   categorias: ICategoria[] = [
     { id: '1', nombre: 'Arte', selected: true },
-    { id: '2', nombre: 'Paisaje', selected: false },
+    { id: '2', nombre: 'Naturaleza', selected: false },
     { id: '3', nombre: 'Animales', selected: false },
     { id: '4', nombre: 'Deportes', selected: false },
-    { id: '5', nombre: 'Mas18', selected: false },
+    { id: '5', nombre: 'Mayor 18', selected: false },
   ];
   usuarioG!: User;
   categoriaSeleccionada = '0';

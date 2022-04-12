@@ -1,10 +1,9 @@
 <app-header (getCategoria)="getImagenes($event)"></app-header>
 
-
 <div class="container">
   <div class="text-center mb-5">
-    <h1>Bienvenido/a {{ usuarioG?.displayName }} </h1>
-    <h2>Galería de Imágenes</h2>
+    <h1 alt="bienvenida al usuario">Bienvenido/a {{ usuarioG?.displayName }} </h1>
+    <h2 alt="galeria de imágenes">GALERÍA DE IMÁGENES</h2>
   </div>
   <app-card [imagenes]="imagenes" [favoritos]="false"></app-card>
 </div>
