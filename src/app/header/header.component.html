@@ -18,19 +18,17 @@
             <i class="icon fa fa-home" aria-hidden="true"></i> </span>Home
         </a>
       </li>
-
       <li class="li">
         <a href="javascript:void(0);" class="links"
           title="Para ver las distintas categorías de imágenes pincha en este enlace">
           <span class="span second">
             <i class="icon fa fa-archive" aria-hidden="true"></i> </span>Categorías
         </a>
-
         <ul class="ul">
           <li class="li" *ngFor="let categoria of categorias">
             <a class="links" (click)="usuarioG!==null ? getImagenes(categoria) : alertLogout()">{{
-              categoria.nombre
-            }}</a>
+              categoria.nombre}}
+            </a>
           </li>
         </ul>
       </li>
@@ -38,21 +36,24 @@
         <a (click)="usuarioG!==null ? goTo('/favoritos') : alertLogout()" class="links"
           title="Para ver la página de tus imágenes favoritas pincha en este enlace">
           <span class="span fourth">
-            <i class="icon fa fa-star" aria-hidden="true"></i> </span>Favoritos
+            <i class="icon fa fa-star" aria-hidden="true"></i>
+          </span>Favoritos
         </a>
       </li>
       <li class="li">
         <a (click)="usuarioG!==null ? addNewImage() : alertLogout()" class="links"
           title="Para añadir tus propias imágenes pincha en este enlace">
           <span class="span fourth">
-            <i class="icon fa fa-upload" aria-hidden="true"></i> </span>Añadir Imágenes
+            <i class="icon fa fa-upload" aria-hidden="true"></i>
+          </span>Añadir Imágenes
         </a>
       </li>
       <li class="li">
         <a href="javascript:void(0);" (click)="scrollToFooter()" class="links"
           title="Para ver la página donde aparece la información de contacto y redes sociales de PNG pincha en este enlace">
           <span class="span fourth">
-            <i class="icon fa fa-envelope" aria-hidden="true"></i> </span>Nosotros
+            <i class="icon fa fa-envelope" aria-hidden="true"></i>
+          </span>Nosotros
         </a>
       </li>
 
@@ -60,7 +61,8 @@
         <a href="javascript:void(0);" (click)="logout()" class="links" [class.d-none]="usuarioG===null"
           title="Para cerrar sesión en la aplicación pincha en este enlace">
           <span class="span first">
-            <i class="icon fa fa-power-off" aria-hidden="true"></i> </span>Logout
+            <i class="icon fa fa-power-off" aria-hidden="true"></i>
+          </span>Logout
         </a>
       </li>
     </ul>
