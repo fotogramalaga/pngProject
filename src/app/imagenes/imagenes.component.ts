@@ -83,14 +83,10 @@ export class ImagenesComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioG = this.fireAuth.currentUser!;
-    if (!this.usuarioG) {
-      this.router.navigateByUrl('imagenes');
-    }
     this.getImagenes(this.categorias[0]);
   }
 
   getCategoria(imagen: IImagen) {
-    console.log(this.categorias[parseInt(imagen.categoria) - 1].nombre);
     return this.categorias[parseInt(imagen.categoria) - 1].nombre;
   }
 
@@ -101,7 +97,7 @@ export class ImagenesComponent implements OnInit {
         this.imagenes = imagenes;
       }
     );
-  }
+  } /*
 
   getLike(imagen: IImagen) {
     return imagen.listaLikes.includes(this.usuarioG.uid);
@@ -118,7 +114,6 @@ export class ImagenesComponent implements OnInit {
     }
     console.log(imagen.listaLikes);
     this.modificarImagenFirebase(imagen);
-    //this.modificarUsuarioFirebase();
   }
 
   getFav(imagen: IImagen) {
@@ -133,7 +128,7 @@ export class ImagenesComponent implements OnInit {
       imagen.listaFavs.splice(index, 1);
     }
     this.modificarImagenFirebase(imagen);
-  }
+  } */
 
   async eliminarImagenFirebase(imagen: IImagen) {
     await this.ImagenesService.deleteImagen(imagen);
@@ -152,7 +147,7 @@ export class ImagenesComponent implements OnInit {
     this.imagenParaSubir = event.target.files[0];
   }
 
-  async addImagen() {
+  /* async addImagen() {
     let estaCategoria: string = '';
     this.categorias.forEach(function (x) {
       if (x.selected == true) estaCategoria = x.id;
@@ -180,7 +175,7 @@ export class ImagenesComponent implements OnInit {
       this.categoriaSeleccionada = '0';
       console.log('imagenes');
     }
-  }
+  } */
 
   logout() {
     this.fireAuth.signOut();

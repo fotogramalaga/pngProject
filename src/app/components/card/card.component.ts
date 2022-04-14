@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Auth, User } from '@angular/fire/auth';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 import { ICategoria } from 'src/app/interfaces/categoria.interface';
 import { IImagen } from 'src/app/interfaces/imagen.interface';
 import { ImagenesService } from '../../services/imagenes.service';
@@ -21,6 +22,23 @@ export class CardComponent implements OnInit {
     { id: '4', nombre: 'Deportes', selected: false },
     { id: '5', nombre: 'Mas18', selected: false },
   ];
+
+  imagen: IImagen = {
+    id: '',
+    titulo: '',
+    categoria: '',
+    descripcion: '',
+    fecha: new Date(),
+    contadorLikes: 0,
+    rutaImagen: '',
+    emailPropietario: '',
+    nombrePropietario: '',
+    avatarUsuario: '',
+    favorito: false,
+    listaLikes: [],
+    listaFavs: [],
+  };
+
   constructor(
     private ImagenesService: ImagenesService,
     private fireAuth: Auth
@@ -28,10 +46,15 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioG = this.fireAuth.currentUser!;
+
+    console.log(this.fireAuth.currentUser!);
   }
 
   getLike(imagen: IImagen) {
-    return imagen.listaLikes.includes(this.usuarioG.uid);
+    let imagenConLike = false;
+    if (imagen.listaLikes != undefined)
+      imagenConLike = imagen.listaLikes.includes(this.usuarioG.uid);
+    return imagenConLike;
   }
 
   setLike(imagen: IImagen) {
@@ -43,18 +66,21 @@ export class CardComponent implements OnInit {
       imagen.listaLikes.splice(index, 1);
       imagen.contadorLikes--;
     }
-    console.log(imagen.listaLikes);
     this.modificarImagenFirebase(imagen);
-    //this.modificarUsuarioFirebase();
   }
 
-  getAllFav(imagen: IImagen) {
-    if (this.favoritos) return imagen.listaFavs.includes(this.usuarioG.uid);
-    else return true;
+  paginaFav(imagen: IImagen) {
+    let imagenFav = true;
+    if (this.favoritos) {
+      imagenFav = this.getFav(imagen);
+    }
+    return imagenFav;
   }
 
   getFav(imagen: IImagen) {
-    return imagen.listaFavs.includes(this.usuarioG.uid);
+    if (imagen.listaFavs != undefined)
+      return imagen.listaFavs.includes(this.usuarioG.uid);
+    return false;
   }
 
   setFav(imagen: IImagen) {
@@ -65,7 +91,6 @@ export class CardComponent implements OnInit {
       imagen.listaFavs.splice(index, 1);
     }
     this.modificarImagenFirebase(imagen);
-    console.log(imagen);
   }
 
   getCategoria(imagen: IImagen) {
