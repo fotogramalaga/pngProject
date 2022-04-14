@@ -55,7 +55,7 @@
 }
 
 .nav>.ul>.li>.ul {
-  background-color: rgb(179, 228, 242);
+  background-color: #a4f5f2;
   /*Le da el fondo al submenu*/
   display: block;
   height: 0%;
@@ -77,17 +77,17 @@
   text-decoration: none;
   transition: all 0.3s ease;
   font-weight: 500;
-  box-shadow: 0px 2px rgb(179, 228, 242);
+  box-shadow: 0px 2px #a4f5f2;
 }
 
 .nav>.ul>.li>.ul>.li .links:hover {
   background-color: #89b4f5;
   /*Le da el fondo en el submenu cuando se hace el hover */
-  box-shadow: 0px 2px #a4f5be;
+  box-shadow: 0px 2px #a4f5f2;
 }
 
 .nav>.ul>.li>.links .span {
-  background-color: rgb(179, 228, 242);
+  background-color: #a4f5f2;
   display: block;
   height: 100%;
   left: 0;
@@ -108,27 +108,6 @@
 }
 
 /*Colores*/
-.nav .ul .li .links .first {
-  background-color: rgb(179, 228, 242);
-  box-shadow: 0px 2px #a4f5be;
-}
-
-.nav .ul .li .links .second {
-  background-color: rgb(179, 228, 242);
-  box-shadow: 0px 2px #a4f5be;
-}
-
-.nav .ul .li .links .third {
-  background-color: rgb(179, 228, 242);
-  box-shadow: 0px 2px #a4f5be;
-}
-
-.nav .ul .li .links .fourth {
-  background-color: rgb(179, 228, 242);
-  box-shadow: 0px 2px #a4f5be;
-}
-
-.nav .ul .li .links .fifth {
-  background-color: rgb(179, 228, 242);
-  box-shadow: 0px 2px #a4f5be;
+.nav .ul .li .links .first .second .third .fourth .fifth {
+  background-color: #a4f5f2;
 }

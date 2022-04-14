@@ -1,7 +1,6 @@
-/* FOOTER */
-.footer {
+#footer{
+  background: #89b4f5;
   width: 100%;
-  background: #5394f5;
   display: block;
   font-size: 17px;
   position: absolute;
@@ -26,7 +25,7 @@
 }
 
 .footer-items p {
-  font-size: 16px;
+  font-size: 18px;
   text-align: justify;
   line-height: 25px;
   color: #000;
@@ -39,16 +38,14 @@
 .border1 {
   height: 3px;
   width: 40px;
-  background: #a4f5be;
-  color: #a4f5be;
-  background-color: #a4f5be;
+  background-color: #3724ff;
   border: 0px;
 }
 
 ul {
   list-style: none;
   color: #000;
-  font-size: 15px;
+  font-size: 18px;
   letter-spacing: 0.5px;
   font-size: 17px;
 }
@@ -61,14 +58,14 @@ ul a {
 }
 
 ul a:hover {
-  color: #a4f5be;
-  font-size: 17px;
+  color: #3724ff;
+  font-size: 18px;
 }
 
 ul li {
   margin: 10px 0;
   height: 25px;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 li i {
@@ -79,7 +76,7 @@ li i {
   width: 100%;
   color: #000;
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .social-media a {
@@ -97,12 +94,12 @@ li i {
 
 .social-media i:hover {
   transform: scale(1.5);
-  color: #a4f5be;
+  color: #3724ff;
 }
 
 .footer-bottom {
   padding: 10px;
-  background: #5394f5;
+  background: #89b4f5;
   color: #000;
   font-size: 17px;
   text-align: center;
