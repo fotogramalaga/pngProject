@@ -1,0 +1,7 @@
+@media (min-width: 992px) {
+
+  img {
+    max-width: 55vH;
+    overflow: auto;
+  }
+}
