@@ -42,6 +42,7 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CardComponent } from './components/card/card.component';
+import { ImgFullComponent } from './components/card/img-full/img-full.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -57,6 +58,7 @@ registerLocaleData(localeEs, 'es');
     HeaderComponent,
     FormularioComponent,
     CardComponent,
+    ImgFullComponent,
   ],
   imports: [
     FontAwesomeModule,
@@ -87,7 +89,7 @@ registerLocaleData(localeEs, 'es');
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   providers: [ConfirmationService, { provide: LOCALE_ID, useValue: 'es' }],
