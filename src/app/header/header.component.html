@@ -1,28 +1,29 @@
 <header class="menu sticky-top">
+  <img src="./assets/img/logo2.jpeg" alt="Logo de Photo Net Group" id="logoHeader" />
   <nav class="nav">
     <ul class="ul">
-      <li class="li">
-        <img src="./assets/img/logo2.jpeg" alt="Logo de Photo Net Group" id="logoHeader" />
-      </li>
       <li class="li" [class.d-none]="usuarioG!==null">
         <a routerLink="/login" class="links"
           title="Para entrar en la aplicación y poder hacer uso de ella pincha en este enlace para iniciar sesión">
           <span class="span first">
-            <i class="icon fa fa-lock" aria-hidden="true"></i> </span>Login
+            <i class="icon fa fa-lock" aria-hidden="true"></i>
+          </span>Login
         </a>
       </li>
       <li class="li">
         <a (click)="usuarioG!==null ? goTo('/imagenes') : alertLogout()" class="links"
           title="Para ir a la página de inicio pincha en este enlace">
           <span class="span fourth">
-            <i class="icon fa fa-home" aria-hidden="true"></i> </span>Home
+            <i class="icon fa fa-home" aria-hidden="true"></i>
+          </span>Home
         </a>
       </li>
       <li class="li">
         <a href="javascript:void(0);" class="links"
           title="Para ver las distintas categorías de imágenes pincha en este enlace">
           <span class="span second">
-            <i class="icon fa fa-archive" aria-hidden="true"></i> </span>Categorías
+            <i class="icon fa fa-archive" aria-hidden="true"></i>
+          </span>Categorías
         </a>
         <ul class="ul">
           <li class="li" *ngFor="let categoria of categorias">

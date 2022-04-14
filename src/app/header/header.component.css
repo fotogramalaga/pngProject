@@ -1,11 +1,13 @@
-#logoHome {
-  width: 4em;
+#logoHeader {
+  width: 6em;
+  margin-top: 0,2em;
+  margin-left: 1.5em;
+  padding: 0;
 }
 
-#logoHeader {
-  width: 4em;
-  margin-left: 2em;
-  padding: 0.2em;
+.ul{
+  margin-left: 0em;
+  padding-left: 0em;
 }
 
 * {
@@ -21,8 +23,8 @@
 
 .nav {
   left: 0;
-  margin: 20px auto;
-  max-width: 90%;
+  margin: 14px auto;
+  max-width: 80%;
   position: absolute;
   /*Sirve para darle el tamaño al menu y el posicionamiento*/
   right: 0;
