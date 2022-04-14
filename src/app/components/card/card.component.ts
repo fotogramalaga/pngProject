@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Auth, User } from '@angular/fire/auth';
-import { faL } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
 import { ICategoria } from 'src/app/interfaces/categoria.interface';
 import { IImagen } from 'src/app/interfaces/imagen.interface';
 import { ImagenesService } from '../../services/imagenes.service';
+import { ImgFullComponent } from './img-full/img-full.component';
 
 @Component({
   selector: 'app-card',
@@ -41,13 +42,19 @@ export class CardComponent implements OnInit {
 
   constructor(
     private ImagenesService: ImagenesService,
-    private fireAuth: Auth
+    private fireAuth: Auth,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.usuarioG = this.fireAuth.currentUser!;
+  }
 
-    console.log(this.fireAuth.currentUser!);
+  imgFull(imagen: string) {
+    console.log('Imagen from card ' + imagen);
+    const dialogRef = this.dialog.open(ImgFullComponent, {
+      data: { url: imagen },
+    });
   }
 
   getLike(imagen: IImagen) {

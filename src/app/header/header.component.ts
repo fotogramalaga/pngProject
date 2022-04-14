@@ -62,7 +62,6 @@ export class HeaderComponent implements OnInit {
       icon: 'error',
       title: 'No estás logueado/a. Inicia sesión para acceder a este contenido',
     });
-    // return '/home';
   }
 
   goTo(ruta: string) {
