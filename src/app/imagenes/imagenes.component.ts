@@ -1,35 +1,3 @@
-/* import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-@Component({
-  selector: 'app-imagenes',
-  templateUrl: './imagenes.component.html',
-  styleUrls: ['./imagenes.component.css'],
-})
-export class ImagenesComponent implements OnInit {
-  imagenes: any[] = [
-    {
-      titulo: '',
-      categoria: '',
-      fecha: null,
-      contadorLikes: 0,
-      contadorDislikes: 0,
-      rutaImagen: '../../assets/img/18/nederotico.png',
-    },
-  ];
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {}
-
-  logout() {
-    this.router.navigateByUrl('home');
-  };
-}
- */
-
-/* TYPESCRIPT JUAN LUIS */
-
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth, User } from '@angular/fire/auth';
@@ -38,7 +6,6 @@ import { ImagenesService } from '../services/imagenes.service';
 import { ICategoria } from '../interfaces/categoria.interface';
 import { ConfirmationService } from 'primeng/api';
 import { IImagen } from '../interfaces/imagen.interface';
-import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-imagenes',
@@ -47,21 +14,7 @@ import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons';
 })
 export class ImagenesComponent implements OnInit {
   idCategoria: string = '';
-  imagen: IImagen = {
-    id: '',
-    titulo: '',
-    categoria: '',
-    descripcion: '',
-    fecha: new Date(),
-    contadorLikes: 0,
-    rutaImagen: '',
-    emailPropietario: '',
-    nombrePropietario: '',
-    avatarUsuario: '',
-    favorito: false,
-    listaLikes: [],
-    listaFavs: [],
-  };
+
   imagenes: IImagen[] = [];
   nombreCategoria: string = '';
   imagenParaSubir: any;
@@ -97,85 +50,7 @@ export class ImagenesComponent implements OnInit {
         this.imagenes = imagenes;
       }
     );
-  } /*
-
-  getLike(imagen: IImagen) {
-    return imagen.listaLikes.includes(this.usuarioG.uid);
   }
-
-  setLike(imagen: IImagen) {
-    if (!this.getLike(imagen)) {
-      imagen.contadorLikes++;
-      imagen.listaLikes.push(this.usuarioG.uid);
-    } else {
-      const index = imagen.listaLikes.indexOf(this.usuarioG.uid);
-      imagen.listaLikes.splice(index, 1);
-      imagen.contadorLikes--;
-    }
-    console.log(imagen.listaLikes);
-    this.modificarImagenFirebase(imagen);
-  }
-
-  getFav(imagen: IImagen) {
-    return imagen.listaFavs.includes(this.usuarioG.uid);
-  }
-
-  setFav(imagen: IImagen) {
-    if (!this.getFav(imagen)) {
-      imagen.listaFavs.push(this.usuarioG.uid);
-    } else {
-      const index = imagen.listaFavs.indexOf(this.usuarioG.uid);
-      imagen.listaFavs.splice(index, 1);
-    }
-    this.modificarImagenFirebase(imagen);
-  } */
-
-  async eliminarImagenFirebase(imagen: IImagen) {
-    await this.ImagenesService.deleteImagen(imagen);
-  }
-  async modificarImagenFirebase(imagen: IImagen) {
-    await this.ImagenesService.updateImagen(imagen);
-  }
-
-  eligeCategoria(categoria: ICategoria) {
-    this.categorias.forEach((x) => (x.selected = false));
-    categoria.selected = true;
-    this.categoriaSeleccionada = categoria.id;
-  }
-
-  elegidaImagen(event: any) {
-    this.imagenParaSubir = event.target.files[0];
-  }
-
-  /* async addImagen() {
-    let estaCategoria: string = '';
-    this.categorias.forEach(function (x) {
-      if (x.selected == true) estaCategoria = x.id;
-    });
-    if (this.categoriaSeleccionada == '0') {
-      alert('Tienes que elegir una categoría.');
-    } else {
-      const storage = getStorage();
-      const storageRef = ref(storage, 'imagenes/' + this.imagenParaSubir.name);
-      const infoUpload = await uploadBytes(storageRef, this.imagenParaSubir);
-      this.imagen.rutaImagen = await getDownloadURL(infoUpload.ref);
-      this.imagen.emailPropietario = this.usuarioG.email;
-      this.imagen.avatarUsuario = this.usuarioG.photoURL;
-      this.imagen.categoria = estaCategoria;
-      this.imagen.nombrePropietario = this.usuarioG.displayName;
-      this.imagen.fecha = new Date(Date.now());
-      // Título y descripción añadidos por ngModel
-      await this.ImagenesService.addImagen(this.imagen);
-      this.confirmationService.confirm({
-        message: 'Imagen añadida correctamente',
-        header: 'OK',
-        icon: 'pi pi-check',
-      });
-      // Resetear el producto
-      this.categoriaSeleccionada = '0';
-      console.log('imagenes');
-    }
-  } */
 
   logout() {
     this.fireAuth.signOut();
