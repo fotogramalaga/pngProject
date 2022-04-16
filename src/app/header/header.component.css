@@ -107,6 +107,12 @@
   /*Es el que hace que bajen los iconos al hacerle hover al texto*/
 }
 
+/*Botón estilo switch para el modo oscuro*/
+.toggle {
+  margin-left: 3em;
+  cursor: pointer;
+}
+
 /*Colores*/
 .nav .ul .li .links .first .second .third .fourth .fifth {
   background-color: #a4f5f2;
