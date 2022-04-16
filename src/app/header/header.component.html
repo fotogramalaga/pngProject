@@ -1,7 +1,9 @@
 <header class="menu sticky-top">
-  <img src="./assets/img/logo2.jpeg" alt="Logo de Photo Net Group" id="logoHeader" />
   <nav class="nav">
     <ul class="ul">
+      <li>
+        <img src="../../assets/img/logo2.png" alt="Logo de Photo Net Group" id="logoHeader" />
+      </li>
       <li class="li" [class.d-none]="usuarioG!==null">
         <a routerLink="/login" class="links"
           title="Para entrar en la aplicación y poder hacer uso de ella pincha en este enlace para iniciar sesión">
@@ -67,8 +69,8 @@
         </a>
       </li>
       <button class="toggle" id="toggle">
-        <span class="slider round"><i class="fa-solid fa-sun"></i></span>
-        <span class="slider round"><i class="fa-solid fa-moon"></i></span>
+        <span class="slider"><i class="fa-solid fa-sun"></i></span>
+        <span class="slider"><i class="fa-solid fa-moon"></i></span>
       </button>
     </ul>
   </nav>
