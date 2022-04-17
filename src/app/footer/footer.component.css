@@ -6,6 +6,11 @@
   position: absolute;
 }
 
+.logofooter{
+  margin-top: 0;
+  padding-top: 0;
+}
+
 .inner-footer {
   width: 95%;
   margin: auto;
@@ -33,6 +38,8 @@
 
 .footer-items h1 {
   color: #000;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .border1 {
